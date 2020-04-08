@@ -5,9 +5,13 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import NavigationBar from './NavigationBar';
-import Home from './Home';
-import People from './People';
-import Planet from './Planet';
+import Home from './starwars/Home';
+import People from './starwars/People';
+import Planets from './starwars/Planets';
+import Films from './starwars/Films';
+import Species from './starwars/Species';
+import Starships from './starwars/Starships';
+import Vehicles from './starwars/Vehicles';
 
 import {getData} from '../actions';
 
@@ -20,7 +24,6 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
                     <NavigationBar/>
                     <Container>
                         <Switch>
@@ -30,13 +33,24 @@ class App extends React.Component {
                             <Route exact path="/people">
                                 <People />
                             </Route>
-                            <Route exact path="/planet">
-                                <Planet />
+                            <Route exact path="/planets">
+                                <Planets />
+                            </Route>
+                            <Route exact path="/films">
+                                <Films />
+                            </Route>
+                            <Route exact path="/species">
+                                <Species />
+                            </Route>
+                            <Route exact path="/starships">
+                                <Starships />
+                            </Route>
+                            <Route exact path="/vehicles">
+                                <Vehicles />
                             </Route>
                         </Switch>
                     </Container>
 
-                </div>
             </BrowserRouter>
            
         )

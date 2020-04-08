@@ -16,27 +16,59 @@ class NavigationBar extends React.Component{
             <Segment inverted>
                 <Menu inverted pointing secondary size='mini'>
                     <Container>
-                        <Link to="/">
                             <Menu.Item 
+                                as={Link}
+                                to='/'
                                 name="Star Wars"
                                 active={activeItem === 'Star Wars'}
                                 onClick={this.handleItemClick}
                             />
-                        </Link>
-                        <Link to="/people">
-                            <Menu.Item 
-                                name="People"
-                                active={activeItem === 'People'}
-                                onClick={this.handleItemClick}
-                                />
-                        </Link>
-                        <Link to="/planet">
-                            <Menu.Item 
-                                name="Planet"
-                                active={activeItem === 'Planet'}
+
+                            <Menu.Item
+                                as={Link}
+                                to='/people' 
+                                name="people"
+                                active={activeItem === 'people'}
                                 onClick={this.handleItemClick}
                             />
-                        </Link>
+
+                            <Menu.Item
+                                as={Link}
+                                to='/planets' 
+                                name="planets"
+                                active={activeItem === 'planets'}
+                                onClick={this.handleItemClick}
+                            />
+                            <Menu.Item
+                                as={Link}
+                                to='/films' 
+                                name="films"
+                                active={activeItem === 'films'}
+                                onClick={this.handleItemClick}
+                            />
+                            <Menu.Item
+                                as={Link}
+                                to='/species' 
+                                name="species"
+                                active={activeItem === 'species'}
+                                onClick={this.handleItemClick}
+                            />
+                            <Menu.Item
+                                as={Link}
+                                to='/starships' 
+                                name="starships"
+                                active={activeItem === 'starships'}
+                                onClick={this.handleItemClick}
+                            />
+                            <Menu.Item  
+                                as={Link}
+                                to='/vehicles' 
+                                name="vehicles"
+                                active={activeItem === 'vehicles'}
+                                onClick={this.handleItemClick}
+                            />
+
+                            
                     </Container>
                 </Menu>
             </Segment>

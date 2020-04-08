@@ -1,14 +1,14 @@
 import React from 'react';
 
-class Planet extends React.Component {
+class Films extends React.Component {
     
     render() {
         return (
             <div>
-                Planet
+                Films
             </div>
         )
     }
 }
 
-export default Planet;
+export default Films;
