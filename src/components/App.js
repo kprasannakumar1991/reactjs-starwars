@@ -2,12 +2,20 @@ import React from 'react';
 import {Container} from 'semantic-ui-react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
+import {connect} from 'react-redux';
+
 import NavigationBar from './NavigationBar';
 import Home from './Home';
 import People from './People';
 import Planet from './Planet';
 
+import {getData} from '../actions';
+
 class App extends React.Component {
+
+    componentDidMount = () => {
+        this.props.getData();
+    }
 
     render() {
         return (
@@ -35,4 +43,6 @@ class App extends React.Component {
     }
 }
 
-export default App;
+
+
+export default connect(null, {getData})(App);
