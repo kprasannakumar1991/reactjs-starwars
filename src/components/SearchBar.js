@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Input} from 'semantic-ui-react';
+import {Container, Input} from 'semantic-ui-react';
 
 class SearchBar extends React.Component {
     state = {value: ''}
@@ -11,13 +11,15 @@ class SearchBar extends React.Component {
     }
     render() {
         return (
-            <Input 
-               icon='search'
-               iconPosition='left'
-               placeholder={this.props.placeholder}
-               value={this.state.value}
-               onChange={this.onTextChange}
-            />
+            <Container style={{padding: '20px 20px 20px 0px'}}>
+                <Input 
+                icon='search'
+                iconPosition='left'
+                placeholder={this.props.placeholder}
+                value={this.state.value}
+                onChange={this.onTextChange}
+                />
+            </Container>
         )
     }
 }

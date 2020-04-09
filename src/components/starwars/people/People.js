@@ -3,17 +3,53 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
-import {Container, Grid, Button, Form, Checkbox} from 'semantic-ui-react';
+import {Container, Grid, Divider} from 'semantic-ui-react';
 import SearchBar from '../../SearchBar';
+import FilterBlock from '../../FilterBlock';
+import SortBlock from '../../SortBlock';
 import PeopleTable from './Table';
 
 class People extends React.Component {
 
-    state = {
-        searchString: '', 
-        genders: ['male', 'female', 'n/a'],
-        sortingFilms: null
+    constructor(props) {
+        super(props);
+
+        this.sortOptions = [
+            {
+                label: "Less to More",
+                value: "asc"
+            },
+            {
+                label: "More to Less",
+                value: "desc"
+            }
+        ]
+
+        this.filterOptions = [
+            {
+                label: 'Male',
+                value: 'male',
+                active: true 
+             },
+             {
+                label: 'Female',
+                value: 'female',
+                active: true 
+             }, 
+             {
+                label: 'N/A',
+                value: 'n/a',
+                active: true 
+             }
+        ]
+
+        this.state = {
+            searchString: '',
+            genders: [],
+            sortingFilms: null
         }
+    }
+
 
     onSearchTextChange  = (text) => {
 
@@ -21,122 +57,64 @@ class People extends React.Component {
 
     }
 
-    onGenderClicked = (gender) => {
-
-        const existingGenders = this.state.genders;
-
-       if (_.includes(existingGenders, gender)) {
-                // remove the gender from the state 
-                _.remove(existingGenders, (g) => g === gender);
-       } else{
-           // add the gender from the state
-           existingGenders.push(gender);
-
-       }
-
-       this.setState({genders: existingGenders})
-    }
-
-    onFilmsSortingClicked = (event, {value}) => {
-        // event.preventDefault();
-        
-        console.log(value);
-        this.setState({
-            sortingFilms: value
-        });
-    }
-
-    styleFilterButton = (gender) => {
-        if (_.includes(this.state.genders, gender)) {
-            return 'secondary color="black"' // selected
-        } else {
-            return 'basic color="black"'; // not selected
+    onFilterDataChanged = (title, elements) => {
+        if (title === 'Gender') {
+            this.setState({genders: elements})
         }
     }
-    renderFilterButtons = () => {
-        return (
-            <div style={{backgroundColor: '#f6f6f6', padding: '20px'}} >
-                <p><strong>Gender:</strong></p>
-                <Button className={this.styleFilterButton('male')}  onClick={()=>this.onGenderClicked('male')} size="tiny">Male</Button>
-                <Button className={this.styleFilterButton('female')}   onClick={()=>this.onGenderClicked('female')} size="tiny">Female</Button>
-                <Button className={this.styleFilterButton('n/a')}   onClick={()=>this.onGenderClicked('n/a')} size="tiny">N/A</Button>
-            </div>
-        )
+
+    onSortDataSelected = (title, value) => {
+        if(title === 'Films') {
+            this.setState({
+                sortingFilms: value
+            });
+        }
     }
+    
+    filterPeopleData = () => {
 
-    renderSortingOptions = () => {
-
-        return (
-            <div style={{backgroundColor: '#f6f6f6', padding: '20px'}} >
-
-            <Form>
-                <Form.Field>
-                <p><strong>Films:</strong></p>
-                </Form.Field>
-                <Form.Field>
-                <Checkbox
-                    radio
-                    label='Less &rarr; More'
-                    name='checkboxRadioGroup'
-                    value='less'
-                    checked={this.state.sortingFilms === 'less'}
-                    onChange={this.onFilmsSortingClicked}
-                />
-                </Form.Field>
-                <Form.Field>
-                <Checkbox
-                    radio
-                    label='More &rarr; Less'
-                    name='checkboxRadioGroup'
-                    value='more'
-                    checked={this.state.sortingFilms === 'more'}
-                    onChange={this.onFilmsSortingClicked}
-                />
-                </Form.Field>
-            </Form>
-      </div>
-        )
-    }
-
-    applyOperation = () => {
         var list = _.filter(this.props.people, (p) => {
-            
-            const passNameFilter =  p.name.toLowerCase().includes(this.state.searchString)
-            const passGenderFilter = _.indexOf(this.state.genders, p.gender) >= 0 ? true: false;
+            // filter based on search string
+            const nameMatched =  p.name.toLowerCase().includes(this.state.searchString);
 
-            return passNameFilter && passGenderFilter;
-        })
+            // filter based on Gender selection
+            var genderMatched = true;
+            if (this.state.genders.length > 0) {
+                genderMatched = this.state.genders.some(e => ((e.value === p.gender) && e.active));
 
-        if (this.state.sortingFilms) {
-            const order = this.state.sortingFilms === 'less'? 'asc':'desc';
-            list = _.orderBy(list, ['films.length'],[order])
+            }
+
+            return nameMatched && genderMatched;
+
+        });
+
+        if(this.state.sortingFilms) {
+            list = _.orderBy(list, ['films.length'],[this.state.sortingFilms])
         }
 
         return list;
     }
-
+   
     renderTable = () => {
-        const list = this.applyOperation();
+        const list = this.filterPeopleData();
         return (
-            <PeopleTable list={list} />
+            <Container>
+                 <p>{`Total ${list.length} found`}</p>
+                 <Divider horizontal/>
+                 <PeopleTable list={list} />
+            </Container>
         )
     }
     
     render() {
+
         return (
             <Grid>
                 <Grid.Column width={4}>
                     <Container>
-                        <br/>
-                        <SearchBar 
-                            onSearchTextChange={this.onSearchTextChange}
-                            placeholder="Search people by name"/>
-                        <br/>
-                        <br/>
-                        {this.renderFilterButtons()}
-                        <br/>
-                        {this.renderSortingOptions()}
-                        <br/>
+                        <SearchBar onSearchTextChange={this.onSearchTextChange} placeholder="Search people by name"/>
+                        <FilterBlock title="Gender" elements={this.filterOptions} onFilterDataChanged={this.onFilterDataChanged}/>
+                        <SortBlock title="Films" elements={this.sortOptions} onSortDataSelected={this.onSortDataSelected}/>
                     </Container>
                     
                 </Grid.Column>

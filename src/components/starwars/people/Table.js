@@ -11,12 +11,12 @@ class PeopleTable extends React.Component {
                         <Header as='h4'>
                             <Header.Content>
                             {people.name}
-                            <Header.Subheader>{people.gender}</Header.Subheader>
+                            {/* <Header.Subheader>{people.gender}</Header.Subheader> */}
                             </Header.Content>
                         </Header>
                         </Table.Cell>
+                        <Table.Cell>{people.gender}</Table.Cell>
                         <Table.Cell>{people.films.length}</Table.Cell>
-                        <Table.Cell>{people.species.length}</Table.Cell>
                         <Table.Cell>{people.vehicles.length}</Table.Cell>
                         <Table.Cell>{people.starships.length}</Table.Cell>
                 </Table.Row>
@@ -30,8 +30,8 @@ class PeopleTable extends React.Component {
                 <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Name</Table.HeaderCell>
+                    <Table.HeaderCell>Gender</Table.HeaderCell>
                     <Table.HeaderCell>Films</Table.HeaderCell>
-                    <Table.HeaderCell>Species</Table.HeaderCell>
                     <Table.HeaderCell>Vehicles</Table.HeaderCell>
                     <Table.HeaderCell>Starships</Table.HeaderCell>
                 </Table.Row>
