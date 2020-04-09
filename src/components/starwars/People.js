@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
-import {List, Button, Form, Checkbox} from 'semantic-ui-react';
+import {Container, Segment, Grid, List, Button, Form, Checkbox} from 'semantic-ui-react';
 import SearchBar from '../SearchBar';
 
 class People extends React.Component {
@@ -55,9 +55,8 @@ class People extends React.Component {
     renderFilterButtons = () => {
         return (
 
-            <div>
-                Filter by:
-                <br/>
+            <div style={{backgroundColor: '#f6f6f6', padding: '20px'}} >
+                <p><strong>Gender:</strong></p>
                 <Button className={this.styleFilterButton('male')}  onClick={()=>this.onGenderClicked('male')} size="tiny">Male</Button>
                 <Button className={this.styleFilterButton('female')}   onClick={()=>this.onGenderClicked('female')} size="tiny">Female</Button>
                 <Button className={this.styleFilterButton('n/a')}   onClick={()=>this.onGenderClicked('n/a')} size="tiny">N/A</Button>
@@ -69,9 +68,11 @@ class People extends React.Component {
     renderSortingOptions = () => {
 
         return (
+            <div style={{backgroundColor: '#f6f6f6', padding: '20px'}} >
+
             <Form>
         <Form.Field>
-          <p>Sort by number of films done:</p>
+          <p><strong>Films:</strong></p>
         </Form.Field>
         <Form.Field>
           <Checkbox
@@ -94,6 +95,7 @@ class People extends React.Component {
           />
         </Form.Field>
       </Form>
+      </div>
         )
 
     }
@@ -125,20 +127,26 @@ class People extends React.Component {
     
     render() {
         return (
-            <div>
-                People list
-                <br/>
-                <SearchBar onSearchTextChange={this.onSearchTextChange} />
-                <br/>
-                <br/>
-                {this.renderFilterButtons()}
-                <br/>
-                {this.renderSortingOptions()}
-                <br/>
-                <List>
-                    {this.renderPeopleList()}
-                </List>
-            </div>
+            <Grid>
+                <Grid.Column width={4}>
+                    <Container>
+                        <br/>
+                        <SearchBar onSearchTextChange={this.onSearchTextChange} />
+                        <br/>
+                        <br/>
+                        {this.renderFilterButtons()}
+                        <br/>
+                        {this.renderSortingOptions()}
+                        <br/>
+                    </Container>
+                    
+                </Grid.Column>
+                <Grid.Column width={12}>
+                    <List>
+                        {this.renderPeopleList()}
+                    </List>
+                </Grid.Column>
+            </Grid>
         )
     }
 }
