@@ -3,8 +3,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
-import {Container, Segment, Grid, List, Button, Form, Checkbox} from 'semantic-ui-react';
-import SearchBar from '../SearchBar';
+import {Container, Grid, Button, Form, Checkbox} from 'semantic-ui-react';
+import SearchBar from '../../SearchBar';
+import PeopleTable from './Table';
 
 class People extends React.Component {
 
@@ -54,14 +55,12 @@ class People extends React.Component {
     }
     renderFilterButtons = () => {
         return (
-
             <div style={{backgroundColor: '#f6f6f6', padding: '20px'}} >
                 <p><strong>Gender:</strong></p>
                 <Button className={this.styleFilterButton('male')}  onClick={()=>this.onGenderClicked('male')} size="tiny">Male</Button>
                 <Button className={this.styleFilterButton('female')}   onClick={()=>this.onGenderClicked('female')} size="tiny">Female</Button>
                 <Button className={this.styleFilterButton('n/a')}   onClick={()=>this.onGenderClicked('n/a')} size="tiny">N/A</Button>
             </div>
-
         )
     }
 
@@ -71,37 +70,35 @@ class People extends React.Component {
             <div style={{backgroundColor: '#f6f6f6', padding: '20px'}} >
 
             <Form>
-        <Form.Field>
-          <p><strong>Films:</strong></p>
-        </Form.Field>
-        <Form.Field>
-          <Checkbox
-            radio
-            label='Less &rarr; More'
-            name='checkboxRadioGroup'
-            value='less'
-            checked={this.state.sortingFilms === 'less'}
-            onChange={this.onFilmsSortingClicked}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Checkbox
-            radio
-            label='More &rarr; Less'
-            name='checkboxRadioGroup'
-            value='more'
-            checked={this.state.sortingFilms === 'more'}
-            onChange={this.onFilmsSortingClicked}
-          />
-        </Form.Field>
-      </Form>
+                <Form.Field>
+                <p><strong>Films:</strong></p>
+                </Form.Field>
+                <Form.Field>
+                <Checkbox
+                    radio
+                    label='Less &rarr; More'
+                    name='checkboxRadioGroup'
+                    value='less'
+                    checked={this.state.sortingFilms === 'less'}
+                    onChange={this.onFilmsSortingClicked}
+                />
+                </Form.Field>
+                <Form.Field>
+                <Checkbox
+                    radio
+                    label='More &rarr; Less'
+                    name='checkboxRadioGroup'
+                    value='more'
+                    checked={this.state.sortingFilms === 'more'}
+                    onChange={this.onFilmsSortingClicked}
+                />
+                </Form.Field>
+            </Form>
       </div>
         )
-
     }
 
-
-    renderPeopleList = () => {
+    applyOperation = () => {
         var list = _.filter(this.props.people, (p) => {
             
             const passNameFilter =  p.name.toLowerCase().includes(this.state.searchString)
@@ -115,14 +112,14 @@ class People extends React.Component {
             list = _.orderBy(list, ['films.length'],[order])
         }
 
-        return list.map(people => {
-            return (
-                <List.Item key={people.url}>
-                    <List.Header>{people.name}</List.Header>
-                     {people.gender}: Films {people.films.length}
-                </List.Item>
-            )
-        })
+        return list;
+    }
+
+    renderTable = () => {
+        const list = this.applyOperation();
+        return (
+            <PeopleTable list={list} />
+        )
     }
     
     render() {
@@ -131,7 +128,9 @@ class People extends React.Component {
                 <Grid.Column width={4}>
                     <Container>
                         <br/>
-                        <SearchBar onSearchTextChange={this.onSearchTextChange} />
+                        <SearchBar 
+                            onSearchTextChange={this.onSearchTextChange}
+                            placeholder="Search people by name"/>
                         <br/>
                         <br/>
                         {this.renderFilterButtons()}
@@ -142,9 +141,7 @@ class People extends React.Component {
                     
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <List>
-                        {this.renderPeopleList()}
-                    </List>
+                    {this.renderTable()}
                 </Grid.Column>
             </Grid>
         )

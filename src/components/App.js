@@ -6,12 +6,12 @@ import {connect} from 'react-redux';
 
 import NavigationBar from './NavigationBar';
 import Home from './starwars/Home';
-import People from './starwars/People';
-import Planets from './starwars/Planets';
-import Films from './starwars/Films';
-import Species from './starwars/Species';
-import Starships from './starwars/Starships';
-import Vehicles from './starwars/Vehicles';
+import People from './starwars/people/People';
+import Planets from './starwars/planets/Planets';
+import Films from './starwars/films/Films';
+import Species from './starwars/species/Species';
+import Starships from './starwars/starships/Starships';
+import Vehicles from './starwars/vehicles/Vehicles';
 
 import {getData} from '../actions';
 

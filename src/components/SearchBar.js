@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
             <Input 
                icon='search'
                iconPosition='left'
-               placeholder='Search by people name'
+               placeholder={this.props.placeholder}
                value={this.state.value}
                onChange={this.onTextChange}
             />
