@@ -47,9 +47,10 @@ class People extends React.Component {
         this.state = {
             searchString: '',
             genders: [],
-            sortingFilms: null,
-            selectedPerson: null
+            sortingFilms: null
         }
+
+        this.selectedPeople = [];
     }
 
 
@@ -71,12 +72,6 @@ class People extends React.Component {
         }
     }
 
-    onPersonSelected = (name) => {
-        this.setState({
-            selectedPerson: name
-        })
-    }
-    
     filterPeopleData = () => {
 
         var list = _.filter(this.props.people, (p) => {
@@ -112,12 +107,12 @@ class People extends React.Component {
     }
 
     renderTable = () => {
-        const list = this.filterPeopleData();
+        this.selectedPeople = this.filterPeopleData();
         return (
             <Container>
-                 <p>{`Total ${list.length} found`}</p>
+                 <p>{`Total ${this.selectedPeople.length} found`}</p>
                  <Divider horizontal/>
-                 <PeopleTable list={list} onPersonSelected={this.onPersonSelected}/>
+                 <PeopleTable list={this.selectedPeople} />
             </Container>
         )
     }
@@ -127,7 +122,7 @@ class People extends React.Component {
         
         return (
             <Container>
-                <PeopleStats name={this.state.selectedPerson} data={data}/>
+                <PeopleStats list={this.selectedPeople}/>
             </Container>
         )
     }

@@ -3,9 +3,6 @@ import { Header, Table } from 'semantic-ui-react'
 
 class PeopleTable extends React.Component {
 
-    onPersonSelected = (name) => {
-        this.props.onPersonSelected(name);
-    }
 
     renderRows = () => {
         return this.props.list.map(people => {
@@ -13,7 +10,7 @@ class PeopleTable extends React.Component {
                 <Table.Row>
                         <Table.Cell>
                         <Header as='h4'>
-                            <Header.Content onMouseOver ={() => this.onPersonSelected(people.name)}>
+                            <Header.Content>
                             {people.name}
                             {/* <Header.Subheader>{people.gender}</Header.Subheader> */}
                             </Header.Content>
