@@ -39,6 +39,7 @@ export const getData = () => async dispatch => {
 
 }
 
+// For testing: Not used by any component
 export const fetchPerson = (personUrl) => async (dispatch, getState) => {
 
     // check if the url already exists in the redux-store
@@ -53,7 +54,6 @@ export const fetchPerson = (personUrl) => async (dispatch, getState) => {
         //     payload: matchedPeople[0]
         // });
     } else {
-        console.log('Fetching ' + personUrl);
         // need to fetch the person info from server and save it to the redux store
         // const response = await SW_API.get(personUrl);
 
@@ -64,3 +64,10 @@ export const fetchPerson = (personUrl) => async (dispatch, getState) => {
     }
 }
 
+export const fetchDataFromServer = (type, url) => async (dispatch, getState) => {
+    const response = await SW_API.get(url);
+    dispatch({
+        type: type,
+        payload: response.data
+    })
+}

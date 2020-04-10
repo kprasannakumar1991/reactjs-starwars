@@ -38,9 +38,10 @@ class Home extends React.Component {
                 <Divider />
                 
                 
-                <Header as='h1' style={{textAlign: 'center'}}>
+                <Header as='h4' style={{textAlign: 'center'}}>
                     <Header.Content>
-                        Let the force be with you...
+                        Counts with increase once you travel through the app. Its just a beginning
+                        <Header.Subheader>Let the force be with you...</Header.Subheader>
                     </Header.Content>
                 </Header>
 

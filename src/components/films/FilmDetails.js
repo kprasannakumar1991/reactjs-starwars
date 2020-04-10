@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import {Container, Grid, Header, List} from 'semantic-ui-react';
 
 import PersonCard from '../people/PersonCard';
+import PlanetCard from '../planets/PlanetCard';
 
 class FilmDetails extends React.Component {
 
@@ -44,6 +45,22 @@ class FilmDetails extends React.Component {
         )
     }
 
+    renderPlanets = () => {
+        return (
+            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
+                <p>{`Total ${this.props.planets.length} planets`}</p>
+                <List>
+                    {
+                        this.props.film.planets.map(planetUrl => {
+                            return <PlanetCard planetUrl={planetUrl}/>
+                        })
+                    }
+                </List>
+            </Container>   
+        )
+
+    }
+    
     render() {
 
         console.log('render ');
@@ -57,7 +74,7 @@ class FilmDetails extends React.Component {
                     {this.renderCharacters()}
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    {}
+                {this.renderPlanets()}
                 </Grid.Column>
             </Grid>                
         )
@@ -72,12 +89,12 @@ const mapStateToProps = (state, ownProps) => {
 
     const films = state.films.filter(film => film.url === currentFilmUrl);
     const filmCharacters = films[0].characters;
-
-    // const people = state.people.filter( p => filmCharacters.indexOf(p.url) !== -1);
+    const planets = films[0].planets;
 
     return {
         film: films[0],
-        people: filmCharacters
+        people: filmCharacters,
+        planets: planets
     };
 }
 export default (withRouter(connect(mapStateToProps)(FilmDetails)));

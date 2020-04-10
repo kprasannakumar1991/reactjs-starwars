@@ -3,16 +3,18 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Container, Divider} from 'semantic-ui-react';
 
-import {fetchPerson} from '../../actions/index';
+import {fetchDataFromServer} from '../../actions/index';
+import {SINGLE_PERSON}from '../../actions/types';
+
 
 class PersonCard extends React.Component {
 
-    // props: personUrl, currentPerson, fetchPerson
+    // props: personUrl, currentPerson, fetchDataFromServer
 
     componentDidMount() {
         if (!this.props.currentPerson) {
             // fetch the person data from server
-            this.props.fetchPerson(this.props.personUrl);
+            this.props.fetchDataFromServer(SINGLE_PERSON, this.props.personUrl);
         }
     }
 
@@ -43,4 +45,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchPerson})(PersonCard);
+export default connect(mapStateToProps, {fetchDataFromServer})(PersonCard);

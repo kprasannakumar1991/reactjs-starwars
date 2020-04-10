@@ -10,8 +10,8 @@ const HomeCard = (props) => {
     <Link to={path}>
         <Card>
         <Image src={image}/>
-        <Card.Content style={{backgroundColor: '#f5f5f5'}}>
-        <Card.Header><p style={{fontSize: '20px', textAlign: 'left'}}>{title}</p></Card.Header>
+        <Card.Content style={{backgroundColor: '#ffffff'}}>
+        <Card.Header><p style={{fontSize: '15px', textAlign: 'left'}}>{title}</p></Card.Header>
         </Card.Content>
         <Card.Content extra style={{backgroundColor: 'black', textAlign: 'left'}}>
         <p style={{color: 'white', fonSize: '15px'}}>
