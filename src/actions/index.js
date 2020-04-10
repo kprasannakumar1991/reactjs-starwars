@@ -1,6 +1,6 @@
-// import SW_API from '../apis/SW_API';
+import SW_API from '../apis/SW_API';
 import axios from 'axios';
-import * as ACTION_TYPES from '../utils/actionTypes';
+import * as TYPES from './types';
 
 export const getData = () => async dispatch => {
         // const response = await SW_API.get('/people')
@@ -12,30 +12,55 @@ export const getData = () => async dispatch => {
         const vehicles = await axios.get('./data/vehicles.json');
 
         dispatch({
-            type: ACTION_TYPES.PEOPLE,
+            type: TYPES.PEOPLE,
             payload: people.data.results
         });
 
         dispatch({
-            type: ACTION_TYPES.PLANETS,
+            type: TYPES.PLANETS,
             payload: planets.data.results
         })
         dispatch({
-            type: ACTION_TYPES.FILMS,
+            type: TYPES.FILMS,
             payload: films.data.results
         })
         dispatch({
-            type: ACTION_TYPES.SPECIES,
+            type: TYPES.SPECIES,
             payload: species.data.results
         })
         dispatch({
-            type: ACTION_TYPES.STARSHIPS,
+            type: TYPES.STARSHIPS,
             payload: starships.data.results
         })
         dispatch({
-            type: ACTION_TYPES.VEHICLES,
+            type: TYPES.VEHICLES,
             payload: vehicles.data.results
         })
 
+}
+
+export const fetchPerson = (personUrl) => async (dispatch, getState) => {
+
+    // check if the url already exists in the redux-store
+    const matchedPeople = getState().people.filter(p => p.url === personUrl);
+    if (matchedPeople.length > 0) {
+        // the person info already exists in the client
+
+        // TESTING: just for testing appending the existing person again back to redux store
+        // This will lead to duplication.
+        // dispatch({
+        //     type: TYPES.FETCH_SINGLE_PERSON,
+        //     payload: matchedPeople[0]
+        // });
+    } else {
+        console.log('Fetching ' + personUrl);
+        // need to fetch the person info from server and save it to the redux store
+        // const response = await SW_API.get(personUrl);
+
+        // dispatch({
+        //     type: TYPES.FETCH_SINGLE_PERSON,
+        //     payload: response.data
+        // })
+    }
 }
 

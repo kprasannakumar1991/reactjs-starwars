@@ -1,10 +1,18 @@
 import {combineReducers} from 'redux';
 
-import * as ACTION_TYPES from '../utils/actionTypes';
+import * as ACTION_TYPES from '../actions/types';
 
 const peopleReducer = (people=[], action) => {
-    if (action.type === ACTION_TYPES.PEOPLE) {
-        return action.payload;
+    if (action.type === ACTION_TYPES.PEOPLE || action.type === ACTION_TYPES.FETCH_SINGLE_PERSON) {
+
+        if (action.type === ACTION_TYPES.PEOPLE) {
+            // returning a brand new list to the store
+            return action.payload;
+        } else {
+            // adding the new person data to existing list of people in the store
+            // and returing a brand new list to the store
+            return [...people, action.payload];
+        }
     }
 
     return people;
