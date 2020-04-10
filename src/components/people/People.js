@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 
 import {Container, Grid, Divider} from 'semantic-ui-react';
-import SearchBar from '../../SearchBar';
-import FilterBlock from '../../FilterBlock';
-import SortBlock from '../../SortBlock';
-import PeopleTable from './Table';
+import SearchBar from '../templates/SearchBar';
+import FilterBlock from '../templates/FilterBlock';
+import SortBlock from '../templates/SortBlock';
+import PeopleTable from './PeopleTable';
+import PeopleStats from './PeopleStatistics';
 
 class People extends React.Component {
 
@@ -16,11 +17,11 @@ class People extends React.Component {
 
         this.sortOptions = [
             {
-                label: "Less to More",
+                label: "Less \u2192 More",
                 value: "asc"
             },
             {
-                label: "More to Less",
+                label: "More \u2192 Less",
                 value: "desc"
             }
         ]
@@ -46,15 +47,14 @@ class People extends React.Component {
         this.state = {
             searchString: '',
             genders: [],
-            sortingFilms: null
+            sortingFilms: null,
+            selectedPerson: null
         }
     }
 
 
     onSearchTextChange  = (text) => {
-
         this.setState({searchString: text.toLowerCase()})
-
     }
 
     onFilterDataChanged = (title, elements) => {
@@ -69,6 +69,12 @@ class People extends React.Component {
                 sortingFilms: value
             });
         }
+    }
+
+    onPersonSelected = (name) => {
+        this.setState({
+            selectedPerson: name
+        })
     }
     
     filterPeopleData = () => {
@@ -95,31 +101,48 @@ class People extends React.Component {
         return list;
     }
    
+    renderSelectionOptions = () => {
+        return (
+            <Container>
+                <SearchBar onSearchTextChange={this.onSearchTextChange} placeholder="Search people by name"/>
+                <FilterBlock title="Gender" elements={this.filterOptions} onFilterDataChanged={this.onFilterDataChanged}/>
+                <SortBlock title="Films" elements={this.sortOptions} onSortDataSelected={this.onSortDataSelected}/>
+            </Container>
+        )
+    }
+
     renderTable = () => {
         const list = this.filterPeopleData();
         return (
             <Container>
                  <p>{`Total ${list.length} found`}</p>
                  <Divider horizontal/>
-                 <PeopleTable list={list} />
+                 <PeopleTable list={list} onPersonSelected={this.onPersonSelected}/>
+            </Container>
+        )
+    }
+
+    renderStatistics = () => {
+        const data = _.find(this.props.people, (p) => p.name === this.state.selectedPerson);
+        
+        return (
+            <Container>
+                <PeopleStats name={this.state.selectedPerson} data={data}/>
             </Container>
         )
     }
     
     render() {
-
         return (
             <Grid>
                 <Grid.Column width={4}>
-                    <Container>
-                        <SearchBar onSearchTextChange={this.onSearchTextChange} placeholder="Search people by name"/>
-                        <FilterBlock title="Gender" elements={this.filterOptions} onFilterDataChanged={this.onFilterDataChanged}/>
-                        <SortBlock title="Films" elements={this.sortOptions} onSortDataSelected={this.onSortDataSelected}/>
-                    </Container>
-                    
+                    {this.renderSelectionOptions()} 
                 </Grid.Column>
-                <Grid.Column width={12}>
+                <Grid.Column width={8}>
                     {this.renderTable()}
+                </Grid.Column>
+                <Grid.Column width={4}>
+                    {this.renderStatistics()}
                 </Grid.Column>
             </Grid>
         )

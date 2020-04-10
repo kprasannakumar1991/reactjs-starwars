@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 
 import {Container, Grid, Divider} from 'semantic-ui-react';
-import SearchBar from '../../SearchBar';
-import SortBlock from '../../SortBlock';
-import PlanetTable from './Table';
+import SearchBar from '../templates/SearchBar';
+import SortBlock from '../templates/SortBlock';
+import PlanetTable from './PlanetTable';
 
 
 class Planets extends React.Component {

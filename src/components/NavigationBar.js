@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {Segment, Menu, Container} from 'semantic-ui-react';
 
 class NavigationBar extends React.Component{
@@ -10,8 +10,13 @@ class NavigationBar extends React.Component{
 
     render() {
 
-        const {activeItem} = this.state;
-
+        var activeItem;
+        if (this.props.location.pathname === '/') {
+            activeItem = this.state.activeItem;
+        } else {
+            activeItem = this.props.location.pathname.substring(1);
+        }
+         
         return (
             <Segment inverted>
                 <Menu inverted pointing secondary size='mini'>
@@ -62,7 +67,7 @@ class NavigationBar extends React.Component{
                             />
                             <Menu.Item  
                                 as={Link}
-                                to='/vehicles' 
+                                to='/vehicles'
                                 name="vehicles"
                                 active={activeItem === 'vehicles'}
                                 onClick={this.handleItemClick}
@@ -77,4 +82,4 @@ class NavigationBar extends React.Component{
     }
 }
 
-export default NavigationBar;
+export default withRouter(NavigationBar);

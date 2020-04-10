@@ -5,13 +5,15 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import NavigationBar from './NavigationBar';
-import Home from './starwars/Home';
-import People from './starwars/people/People';
-import Planets from './starwars/planets/Planets';
-import Films from './starwars/films/Films';
-import Species from './starwars/species/Species';
-import Starships from './starwars/starships/Starships';
-import Vehicles from './starwars/vehicles/Vehicles';
+import Home from './Home';
+import People from './people/People';
+import Planets from './planets/Planets';
+import Films from './films/Films';
+import Species from './species/Species';
+import Starships from './starships/Starships';
+import Vehicles from './vehicles/Vehicles';
+
+import PeopleDetail from './people/PeopleDetails';
 
 import {getData} from '../actions';
 
@@ -47,6 +49,9 @@ class App extends React.Component {
                             </Route>
                             <Route exact path="/vehicles">
                                 <Vehicles />
+                            </Route>
+                            <Route exact path="/peopledetails">
+                                <PeopleDetail/>
                             </Route>
                         </Switch>
                     </Container>

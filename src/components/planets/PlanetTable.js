@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 import { Header, Table } from 'semantic-ui-react'
 
 class PlanetTable extends React.Component {
@@ -15,7 +16,19 @@ class PlanetTable extends React.Component {
                         </Header>
                         </Table.Cell>
                         <Table.Cell>{planet.diameter}</Table.Cell>
-                        <Table.Cell>{planet.residents.length}</Table.Cell>
+                        <Table.Cell>
+                            <Link to={{
+                                    pathname: '/peopledetails',
+                                    state: {
+                                        name: 'Prasanna',
+                                        age: 40,
+                                        city: 'Bangalore',
+                                        data: planet.residents.length
+                                        }
+                                    }}>
+                                    {planet.residents.length}
+                            </Link>
+                        </Table.Cell>
                         <Table.Cell>{planet.films.length}</Table.Cell>
                 </Table.Row>
             )
