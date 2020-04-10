@@ -1,5 +1,7 @@
-import React from 'react'
-import { Header, Table } from 'semantic-ui-react'
+import React from 'react';
+
+import {Link} from 'react-router-dom';
+import { Header, Table, Button } from 'semantic-ui-react'
 
 class FilmTable extends React.Component {
 
@@ -17,7 +19,13 @@ class FilmTable extends React.Component {
                         </Header>
                         </Table.Cell>
                         <Table.Cell>{film.director}</Table.Cell>
-                        <Table.Cell>{film.characters.length}</Table.Cell>
+                        <Table.Cell>{film.characters.length} </Table.Cell>
+                        <Table.Cell>
+                            <Link to={{pathname: '/filmdetails',state: {url: film.url, title: film.title}}}>
+                                    <Button basic color='grey' size='mini'>{'Details \u2192'}</Button>
+                            </Link>
+                        </Table.Cell>
+
                 </Table.Row>
             )
         })
@@ -31,6 +39,7 @@ class FilmTable extends React.Component {
                     <Table.HeaderCell>Name</Table.HeaderCell>
                     <Table.HeaderCell>Director</Table.HeaderCell>
                     <Table.HeaderCell>Characters</Table.HeaderCell>
+                    <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
 
