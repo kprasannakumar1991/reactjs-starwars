@@ -47,7 +47,7 @@ class FilterBlock extends React.Component {
     render() {
 
         return (
-            <Container style={{backgroundColor: '#f6f6f6', padding: '20px', margin:'20px', position:'relative'}}>
+            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px', position:'relative'}}>
                 <Button basic size='tiny' style={{position: 'absolute', right: '0', top:'0', margin: '5px'}} onClick={this.onResetClicked}>Reset</Button>
                 <p><strong>{this.props.title}:</strong></p>
                 {this.renderButtons()}

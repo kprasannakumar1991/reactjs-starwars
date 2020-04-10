@@ -42,7 +42,7 @@ class SortBlock extends React.Component {
 
     render() {
         return (
-            <Container style={{backgroundColor: '#f6f6f6', padding: '20px', margin:'20px'}}>
+            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
                  <Form>
                 <Form.Field>
                 <p><strong>{this.props.title}</strong></p>

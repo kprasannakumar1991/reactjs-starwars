@@ -109,17 +109,15 @@ class People extends React.Component {
     renderTable = () => {
         this.selectedPeople = this.filterPeopleData();
         return (
-            <Container>
-                 <p>{`Total ${this.selectedPeople.length} found`}</p>
+            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
+            <p>{`Total ${this.selectedPeople.length} found`}</p>
                  <Divider horizontal/>
                  <PeopleTable list={this.selectedPeople} />
             </Container>
         )
     }
 
-    renderStatistics = () => {
-        const data = _.find(this.props.people, (p) => p.name === this.state.selectedPerson);
-        
+    renderStatistics = () => {        
         return (
             <Container>
                 <PeopleStats list={this.selectedPeople}/>

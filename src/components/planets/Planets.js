@@ -7,6 +7,8 @@ import {Container, Grid, Divider} from 'semantic-ui-react';
 import SearchBar from '../templates/SearchBar';
 import SortBlock from '../templates/SortBlock';
 import PlanetTable from './PlanetTable';
+import PlantStats from './PlanetStatistics';
+import PlanetStats from './PlanetStatistics';
 
 
 class Planets extends React.Component {
@@ -29,6 +31,8 @@ class Planets extends React.Component {
             searchString: '',
             sortValue: null
         }
+
+        this.selectedPlanets = [];
     }
 
 
@@ -68,30 +72,44 @@ class Planets extends React.Component {
         return list;
     }
    
-    renderTable = () => {
-        const list = this.filterData();
+    renderSelectionOptions = () => {
         return (
-            <Container>
-                 <p>{`Total ${list.length} found`}</p>
+                <Container>
+                    <SearchBar onSearchTextChange={this.onSearchTextChange} placeholder="Search planet by name"/>
+                    <SortBlock title="Planet Size" elements={this.sortOptions} onSortDataSelected={this.onSortDataSelected}/>
+                </Container>
+        )
+    }
+
+    renderTable = () => {
+        this.selectedPlanets = this.filterData();
+        return (
+            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
+            <p>{`Total ${this.selectedPlanets.length} found`}</p>
                  <Divider horizontal/>
-                 <PlanetTable list={list} />
+                 <PlanetTable list={this.selectedPlanets} />
             </Container>
         )
     }
     
+    renderStatistics = () => {
+        return (
+            <Container>
+                <PlanetStats list={this.selectedPlanets}/>
+            </Container>
+        )
+    }
     render() {
-
         return (
             <Grid>
                 <Grid.Column width={4}>
-                    <Container>
-                        <SearchBar onSearchTextChange={this.onSearchTextChange} placeholder="Search planet by name"/>
-                        <SortBlock title="Planet Size" elements={this.sortOptions} onSortDataSelected={this.onSortDataSelected}/>
-                    </Container>
-                    
+                    {this.renderSelectionOptions()}
                 </Grid.Column>
-                <Grid.Column width={12}>
+                <Grid.Column width={8}>
                     {this.renderTable()}
+                </Grid.Column>
+                <Grid.Column width={4}>
+                    {this.renderStatistics()}
                 </Grid.Column>
             </Grid>
         )
