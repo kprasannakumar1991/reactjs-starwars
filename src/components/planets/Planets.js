@@ -7,7 +7,6 @@ import {Container, Grid, Divider} from 'semantic-ui-react';
 import SearchBar from '../templates/SearchBar';
 import SortBlock from '../templates/SortBlock';
 import PlanetTable from './PlanetTable';
-import PlantStats from './PlanetStatistics';
 import PlanetStats from './PlanetStatistics';
 
 
