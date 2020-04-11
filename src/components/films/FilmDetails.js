@@ -6,7 +6,7 @@ import {Container, Grid, Header, List} from 'semantic-ui-react';
 
 import {CHARACTERS, PLANETS, STARSHIPS} from '../../utils/resourceTypes';
 
-import ResourceCard from '../templates/ResourceCard';
+import ResourceContainer from '../templates/ResourceContainer';
 
 class FilmDetails extends React.Component {
 
@@ -31,21 +31,6 @@ class FilmDetails extends React.Component {
         )
     }
 
-    renderResource = (resourceType) => {
-        return (
-            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-                <p>{`Total ${this.props.film[resourceType].length} ${resourceType}`}</p>
-                <List>
-                    {
-                        this.props.film[resourceType].map(resourceUrl => {
-                            return <ResourceCard type={resourceType} url={resourceUrl}/>
-                        })
-                    }
-                </List>
-            </Container>   
-        )
-    }
-    
     render() {
         return (
             <Container>
@@ -57,13 +42,13 @@ class FilmDetails extends React.Component {
                         {this.renderFilmInformation()} 
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        {this.renderResource(CHARACTERS)}
+                        <ResourceContainer parent={this.props.film} child={CHARACTERS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                    {this.renderResource(PLANETS)}
+                        <ResourceContainer parent={this.props.film} child={PLANETS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                    {this.renderResource(STARSHIPS)}
+                        <ResourceContainer parent={this.props.film} child={STARSHIPS} />
                     </Grid.Column>
                 </Grid>    
 

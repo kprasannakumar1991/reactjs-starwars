@@ -6,7 +6,7 @@ import {Grid, Header, List, Container} from 'semantic-ui-react';
 
 import {FILMS, STARSHIPS, SPECIES} from '../../utils/resourceTypes';
 
-import ResourceCard from '../templates/ResourceCard';
+import ResourceContainer from '../templates/ResourceContainer';
 
 class PersonDetails extends React.Component {
 
@@ -28,21 +28,6 @@ class PersonDetails extends React.Component {
         )
     }
 
-    renderResource = (resourceType) => {
-        return (
-            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-                <p>{`Total ${this.props.person[resourceType].length} ${resourceType}`}</p>
-                <List>
-                    {
-                        this.props.person[resourceType].map(resourceUrl => {
-                            return <ResourceCard key={resourceUrl} type={resourceType} url={resourceUrl}/>
-                        })
-                    }
-                </List>
-            </Container>   
-        )
-    }
-    
     render() {
         return (
             <Container>
@@ -50,20 +35,19 @@ class PersonDetails extends React.Component {
                     Person details:
                 </Header>
                 <Grid>
-                <Grid.Column width={4}>
-                    {this.renderPersonInformation()} 
-                </Grid.Column>
-                <Grid.Column width={4}>
-                    {this.renderResource(FILMS)}
-                </Grid.Column>
-                <Grid.Column width={4}>
-                {this.renderResource(STARSHIPS)}
-                </Grid.Column>
-                <Grid.Column width={4}>
-                {this.renderResource(SPECIES)}
-                </Grid.Column>
-            </Grid>    
-
+                    <Grid.Column width={4}>
+                        {this.renderPersonInformation()} 
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                        <ResourceContainer parent={this.props.person} child={FILMS} />
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                        <ResourceContainer parent={this.props.person} child={STARSHIPS} />
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                        <ResourceContainer parent={this.props.person} child={SPECIES} />
+                    </Grid.Column>
+                </Grid>    
             </Container>
                         
         )
