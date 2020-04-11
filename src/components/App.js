@@ -20,12 +20,14 @@ import SpeciesDetails from './species/SpeciesDetails';
 import StarshipDetails from './starships/StarshipDetails';
 import VehicleDetails from './vehicles/VehicleDetails';
 
-import {getData} from '../actions';
+import {getData, getDataFromServer} from '../actions';
 
 class App extends React.Component {
 
     componentDidMount = () => {
+        // fetch few recoreds of all the resources 
         this.props.getData();
+        // this.props.getDataFromServer();
     }
 
     render() {
@@ -84,4 +86,4 @@ class App extends React.Component {
 
 
 
-export default connect(null, {getData})(App);
+export default connect(null, {getData, getDataFromServer})(App);

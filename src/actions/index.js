@@ -2,62 +2,133 @@ import SW_API from '../apis/SW_API';
 import axios from 'axios';
 import * as TYPES from './types';
 
+// called from App.js
+export const getDataFromServer = () => async dispatch => {
+
+    // fetches initial record set for each resources
+    const people = await SW_API.get('/people')
+    const planets = await SW_API.get('/planets');
+    const films = await SW_API.get('/films');
+    const species = await SW_API.get('/species');
+    const starships = await SW_API.get('/starships');
+    const vehicles = await SW_API.get('/vehicles');
+
+    dispatch({
+        type: TYPES.PEOPLE,
+        payload: {
+            count: people.data.count,
+            results: people.data.results
+        }
+    });
+
+    dispatch({
+        type: TYPES.PLANETS,
+        payload: {
+            count: people.data.count,
+            results:planets.data.results}
+    })
+    dispatch({
+        type: TYPES.FILMS,
+        payload: {
+            count: films.data.count,
+            results: films.data.results
+        }
+    })
+
+    dispatch({
+        type: TYPES.SPECIES,
+        payload: {
+            count: species.data.count,
+            results: species.data.results
+        }
+    })
+
+    dispatch({
+        type: TYPES.STARSHIPS,
+        payload: {
+            count: starships.data.count,
+            results: starships.data.results
+        }
+    })
+    dispatch({
+        type: TYPES.VEHICLES,
+        payload: {
+            count: vehicles.data.count,
+            results: vehicles.data.results
+        }
+    })
+
+}
+
+// called from App.js
 export const getData = () => async dispatch => {
-        // const response = await SW_API.get('/people')
-        const people = await axios.get('./data/people.json');
-        const planets = await axios.get('./data/planets.json');
-        const films = await axios.get('./data/films.json');
-        const species = await axios.get('./data/species.json');
-        const starships = await axios.get('./data/starships.json');
-        const vehicles = await axios.get('./data/vehicles.json');
 
-        console.log('people ' + people.data);
+    // fetching the locally stoed data
+    const people = await axios.get('./data/people.json');
+    const planets = await axios.get('./data/planets.json');
+    const films = await axios.get('./data/films.json');
+    const species = await axios.get('./data/species.json');
+    const starships = await axios.get('./data/starships.json');
+    const vehicles = await axios.get('./data/vehicles.json');
 
+    dispatch({
+        type: TYPES.PEOPLE,
+        payload: {
+            count: people.data.count,
+            results: people.data.results
+        }
+    });
+
+    dispatch({
+        type: TYPES.PLANETS,
+        payload: {
+            count: people.data.count,
+            results:planets.data.results}
+    })
+    dispatch({
+        type: TYPES.FILMS,
+        payload: {
+            count: films.data.count,
+            results: films.data.results
+        }
+    })
+
+    dispatch({
+        type: TYPES.SPECIES,
+        payload: {
+            count: species.data.count,
+            results: species.data.results
+        }
+    })
+
+    dispatch({
+        type: TYPES.STARSHIPS,
+        payload: {
+            count: starships.data.count,
+            results: starships.data.results
+        }
+    })
+    dispatch({
+        type: TYPES.VEHICLES,
+        payload: {
+            count: vehicles.data.count,
+            results: vehicles.data.results
+        }
+    })
+
+}
+
+export const fetchDataFromServer = (type, url) => async (dispatch, getState) => {
+    try {
+        const response = await SW_API.get(url);
         dispatch({
-            type: TYPES.PEOPLE,
-            payload: {
-                count: people.data.count,
-                results: people.data.results
-            }
-        });
-
-        dispatch({
-            type: TYPES.PLANETS,
-            payload: {
-                count: people.data.count,
-                results:planets.data.results}
+            type: type,
+            payload: response.data
         })
-        dispatch({
-            type: TYPES.FILMS,
-            payload: {
-                count: films.data.count,
-                results: films.data.results
-            }
-        })
-
-        dispatch({
-            type: TYPES.SPECIES,
-            payload: {
-                count: species.data.count,
-                results: species.data.results
-            }
-        })
-
-        dispatch({
-            type: TYPES.STARSHIPS,
-            payload: {
-                count: starships.data.count,
-                results: starships.data.results
-            }
-        })
-        dispatch({
-            type: TYPES.VEHICLES,
-            payload: {
-                count: vehicles.data.count,
-                results: vehicles.data.results
-            }
-        })
-
+    }
+    catch(error) {
+        console.log('Error while fetching data ' + JSON.stringify(error.message));
+    }
 }
 
 // only for testing: should not be used by any component
@@ -82,18 +153,5 @@ export const fetchPersonFromServer = (personUrl) => async (dispatch, getState) =
         //     type: TYPES.SINGLE_PERSON,
         //     payload: response.data
         // })
-    }
-}
-
-export const fetchDataFromServer = (type, url) => async (dispatch, getState) => {
-    try {
-        const response = await SW_API.get(url);
-        dispatch({
-            type: type,
-            payload: response.data
-        })
-    }
-    catch(error) {
-        console.log('Error while fetching data ' + JSON.stringify(error.message));
     }
 }
