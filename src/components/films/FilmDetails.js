@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Container, Grid, Header, List} from 'semantic-ui-react';
 
-import PersonCard from '../people/PersonCard';
-import PlanetCard from '../planets/PlanetCard';
+import {CHARACTERS, PLANETS, STARSHIPS} from '../../utils/resourceTypes';
+
+import ResourceCard from '../templates/ResourceCard';
 
 class FilmDetails extends React.Component {
 
@@ -30,53 +31,44 @@ class FilmDetails extends React.Component {
         )
     }
 
-    renderCharacters = () => {
+    renderResource = (resourceType) => {
         return (
             <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-                <p>{`Total ${this.props.people.length} characters`}</p>
+                <p>{`Total ${this.props.film[resourceType].length} ${resourceType}`}</p>
                 <List>
                     {
-                        this.props.film.characters.map(personUrl => {
-                            return <PersonCard personUrl={personUrl}/>
+                        this.props.film[resourceType].map(resourceUrl => {
+                            return <ResourceCard type={resourceType} url={resourceUrl}/>
                         })
                     }
                 </List>
             </Container>   
         )
-    }
-
-    renderPlanets = () => {
-        return (
-            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-                <p>{`Total ${this.props.planets.length} planets`}</p>
-                <List>
-                    {
-                        this.props.film.planets.map(planetUrl => {
-                            return <PlanetCard planetUrl={planetUrl}/>
-                        })
-                    }
-                </List>
-            </Container>   
-        )
-
     }
     
     render() {
-
-        console.log('render ');
-
         return (
+            <Container>
+                <Header as='h2'>
+                    Film details:
+                </Header>
                 <Grid>
-                <Grid.Column width={4}>
-                    {this.renderFilmInformation()} 
-                </Grid.Column>
-                <Grid.Column width={4}>
-                    {this.renderCharacters()}
-                </Grid.Column>
-                <Grid.Column width={4}>
-                {this.renderPlanets()}
-                </Grid.Column>
-            </Grid>                
+                    <Grid.Column width={4}>
+                        {this.renderFilmInformation()} 
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                        {this.renderResource(CHARACTERS)}
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                    {this.renderResource(PLANETS)}
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                    {this.renderResource(STARSHIPS)}
+                    </Grid.Column>
+                </Grid>    
+
+            </Container>
+                            
         )
 
     }
@@ -88,13 +80,9 @@ const mapStateToProps = (state, ownProps) => {
     const currentFilmUrl = ownProps.location.state.url;
 
     const films = state.films.results.filter(film => film.url === currentFilmUrl);
-    const filmCharacters = films[0].characters;
-    const planets = films[0].planets;
 
     return {
         film: films[0],
-        people: filmCharacters,
-        planets: planets
     };
 }
 export default (withRouter(connect(mapStateToProps)(FilmDetails)));

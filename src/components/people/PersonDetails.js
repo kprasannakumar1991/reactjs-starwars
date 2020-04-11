@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Grid, Header, List, Container} from 'semantic-ui-react';
 
-import {SINGLE_FILM} from '../../actions/types';
-import GenericCard from '../templates/GenericCard';
+import {FILMS, STARSHIPS, SPECIES} from '../../utils/resourceTypes';
+
+import ResourceCard from '../templates/ResourceCard';
 
 class PersonDetails extends React.Component {
 
@@ -27,34 +28,44 @@ class PersonDetails extends React.Component {
         )
     }
 
-    renderFilms = () => {
+    renderResource = (resourceType) => {
         return (
             <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-                <p>{`Total ${this.props.person.films.length} films`}</p>
+                <p>{`Total ${this.props.person[resourceType].length} ${resourceType}`}</p>
                 <List>
                     {
-                        this.props.person.films.map(filmUrl => {
-                            return <GenericCard resourceType={SINGLE_FILM} resourceUrl={filmUrl}/>
+                        this.props.person[resourceType].map(resourceUrl => {
+                            return <ResourceCard key={resourceUrl} type={resourceType} url={resourceUrl}/>
                         })
                     }
                 </List>
             </Container>   
         )
-
     }
     
     render() {
         return (
+            <Container>
+                <Header as='h2'>
+                    Person details:
+                </Header>
                 <Grid>
                 <Grid.Column width={4}>
                     {this.renderPersonInformation()} 
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    {this.renderFilms()}
+                    {this.renderResource(FILMS)}
                 </Grid.Column>
                 <Grid.Column width={4}>
+                {this.renderResource(STARSHIPS)}
                 </Grid.Column>
-            </Grid>                
+                <Grid.Column width={4}>
+                {this.renderResource(SPECIES)}
+                </Grid.Column>
+            </Grid>    
+
+            </Container>
+                        
         )
 
     }
