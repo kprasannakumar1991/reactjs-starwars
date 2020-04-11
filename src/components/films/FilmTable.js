@@ -24,7 +24,7 @@ class FilmTable extends React.Component {
                         <Table.Cell>{film.characters.length} </Table.Cell>
                         <Table.Cell>
                             <Link to={{pathname: '/filmdetails',state: {url: film.url}}}>
-                                    <DetailsButton title='More'/>
+                                    <DetailsButton />
                             </Link>
                         </Table.Cell>
 

@@ -4,31 +4,41 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Grid, Header, Container} from 'semantic-ui-react';
 
-import {FILMS, STARSHIPS, SPECIES} from '../../utils/resourceTypes';
+import {RESIDENTS, FILMS} from '../../utils/resourceTypes';
 
 import ResourceContainer from '../templates/ResourceContainer';
 
-class PersonDetails extends React.Component {
+class PlanetDetails extends React.Component {
 
     renderBasicInformation = () => {
         return (
             <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
                 <Header as='h3'>
-                    {this.props.person.name}
+                    {this.props.planet.name}
                 </Header>
                 <strong>URL:</strong>
                 <br/>
                 {this.props.location.state.url}
                 <br/>
                 <br/>
-                <strong>Gender:</strong>
+                <strong>Population:</strong>
                 <br/>
-                {this.props.person.gender}
+                {this.props.planet.population}
                 <br/>
                 <br/>
-                <strong>Born</strong>
+                <strong>Size:</strong>
                 <br/>
-                {this.props.person.birth_year}
+                {this.props.planet.diameter}
+                <br/>
+                <br/>
+                <strong>Climate:</strong>
+                <br/>
+                {this.props.planet.climate}
+                <br/>
+                <br/>
+                <strong>Terrain:</strong>
+                <br/>
+                {this.props.planet.terrain}
 
             </Container>   
         )
@@ -38,20 +48,19 @@ class PersonDetails extends React.Component {
         return (
             <Container>
                 <Header as='h2'>
-                    Person details:
+                    Planet details:
                 </Header>
                 <Grid>
                     <Grid.Column width={4}>
                         {this.renderBasicInformation()} 
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.person} child={FILMS} />
+                        <ResourceContainer parent={this.props.planet} child={RESIDENTS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.person} child={STARSHIPS} />
+                        <ResourceContainer parent={this.props.planet} child={FILMS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.person} child={SPECIES} />
                     </Grid.Column>
                 </Grid>    
             </Container>
@@ -64,12 +73,12 @@ class PersonDetails extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 
     // this data is coming from Link payload
-    const currentPersonUrl = ownProps.location.state.url;
+    const currentPlanetUrl = ownProps.location.state.url;
 
-    const people = state.people.results.filter(person => person.url === currentPersonUrl);
+    const planets = state.planets.results.filter(planet => planet.url === currentPlanetUrl);
 
     return {
-        person: people[0],
+        planet: planets[0],
     };
 }
-export default (withRouter(connect(mapStateToProps)(PersonDetails)));
+export default (withRouter(connect(mapStateToProps)(PlanetDetails)));

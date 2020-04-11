@@ -4,29 +4,37 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Container, Grid, Header, List} from 'semantic-ui-react';
 
-import {CHARACTERS, PLANETS, STARSHIPS} from '../../utils/resourceTypes';
+import {CHARACTERS, PLANETS, SPECIES, STARSHIPS, VEHICLES} from '../../utils/resourceTypes';
 
 import ResourceContainer from '../templates/ResourceContainer';
 
 class FilmDetails extends React.Component {
 
-    renderFilmInformation = () => {
+    renderBasicInformation = () => {
         return (
             <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
                 <Header as='h3'>
                     {this.props.film.title}
                 </Header>
 
-                URL: {this.props.location.state.url}
+                <strong>URL:</strong>
+                <br/>
+                {this.props.location.state.url}
                 <br/>
                 <br/>
-                Director: {this.props.film.director}
+                <strong>Director:</strong>
+                <br/>
+                {this.props.film.director}
                 <br/>
                 <br/>
-                Producer: {this.props.film.producer}
+                <strong>Producer:</strong>
+                <br/>
+                {this.props.film.producer}
                 <br/>
                 <br/>
-                Released on: {this.props.film.release_date}
+                <strong>Released date:</strong>
+                <br/>
+                {this.props.film.release_date}
             </Container>
         )
     }
@@ -39,17 +47,21 @@ class FilmDetails extends React.Component {
                 </Header>
                 <Grid>
                     <Grid.Column width={4}>
-                        {this.renderFilmInformation()} 
+                        {this.renderBasicInformation()} 
                     </Grid.Column>
-                    <Grid.Column width={4}>
+                    <Grid.Column width={3}>
                         <ResourceContainer parent={this.props.film} child={CHARACTERS} />
                     </Grid.Column>
-                    <Grid.Column width={4}>
+                    <Grid.Column width={3}>
                         <ResourceContainer parent={this.props.film} child={PLANETS} />
                     </Grid.Column>
-                    <Grid.Column width={4}>
+                    <Grid.Column width={3}>
                         <ResourceContainer parent={this.props.film} child={STARSHIPS} />
                     </Grid.Column>
+                    <Grid.Column width={3}>
+                        <ResourceContainer parent={this.props.film} child={VEHICLES} />
+                    </Grid.Column>
+                    
                 </Grid>    
 
             </Container>

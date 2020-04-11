@@ -1,13 +1,14 @@
 import React from 'react';
 
 import {connect} from 'react-redux';
-import {Container, Divider} from 'semantic-ui-react';
+import {Container, Divider, Label, Dimmer} from 'semantic-ui-react';
 
 import {fetchDataFromServer} from '../../actions/index';
 import {
     PEOPLE,
     CHARACTERS,
     PILOTS,
+    RESIDENTS,
     FILMS,
     PLANETS,
     SPECIES,
@@ -38,8 +39,8 @@ class ResourceCard extends React.Component {
                 return <p>{this.props.currentResource.name}</p>
             }
         }
-
-    return <p>Loading... {this.props.url}</p>
+        
+        return <Label basic color="grey" size="tiny">{`Loading... ${this.props.url}`}</Label>
     }
 
     render() {
@@ -59,7 +60,7 @@ const mapStateToProps = (state, ownProps) => {
 
     var resources = [];
 
-    if (resourceType === PEOPLE || resourceType === CHARACTERS || resourceType === PILOTS) {
+    if (resourceType === PEOPLE || resourceType === CHARACTERS || resourceType === PILOTS || resourceType === RESIDENTS) {
         resources = state.people.results.filter(item => item.url === resourceUrl);
     } else if (resourceType === PLANETS) {
         resources = state.planets.results.filter(item => item.url === resourceUrl);

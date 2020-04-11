@@ -15,6 +15,7 @@ import Vehicles from './vehicles/Vehicles';
 
 import PersonDetails from './people/PersonDetails';
 import FilmDetails from './films/FilmDetails';
+import PlanetDetails from './planets/PlanetDetails';
 
 import {getData} from '../actions';
 
@@ -56,6 +57,9 @@ class App extends React.Component {
                             </Route>
                             <Route exact path="/filmdetails">
                                 <FilmDetails/>
+                            </Route>
+                            <Route exact path="/planetdetails">
+                                <PlanetDetails/>
                             </Route>
                         </Switch>
                     </Container>

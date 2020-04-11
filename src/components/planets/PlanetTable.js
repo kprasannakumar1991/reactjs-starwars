@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import { Header, Table } from 'semantic-ui-react'
 
+import DetailsButton from '../templates/DetailsButton';
+
 class PlanetTable extends React.Component {
 
     renderRows = () => {
@@ -16,20 +18,13 @@ class PlanetTable extends React.Component {
                         </Header>
                         </Table.Cell>
                         <Table.Cell>{planet.diameter}</Table.Cell>
+                        <Table.Cell>{planet.residents.length}</Table.Cell>
+                        <Table.Cell>{planet.films.length}</Table.Cell>
                         <Table.Cell>
-                            <Link to={{
-                                    pathname: '/peopledetails',
-                                    state: {
-                                        name: 'Prasanna',
-                                        age: 40,
-                                        city: 'Bangalore',
-                                        data: planet.residents.length
-                                        }
-                                    }}>
-                                    {planet.residents.length}
+                            <Link to={{pathname: '/planetdetails',state: {url: planet.url}}}>
+                                    <DetailsButton />
                             </Link>
                         </Table.Cell>
-                        <Table.Cell>{planet.films.length}</Table.Cell>
                 </Table.Row>
             )
         })
@@ -44,6 +39,7 @@ class PlanetTable extends React.Component {
                     <Table.HeaderCell>Diameter</Table.HeaderCell>
                     <Table.HeaderCell>Residents</Table.HeaderCell>
                     <Table.HeaderCell>Films</Table.HeaderCell>
+                    <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
 
