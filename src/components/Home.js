@@ -36,8 +36,7 @@ class Home extends React.Component {
                 </Grid>
 
                 <Divider />
-                
-                
+                           
                 <Header as='h4' style={{textAlign: 'center'}}>
                     <Header.Content>
                         Explore the app to increase the counts
@@ -45,22 +44,13 @@ class Home extends React.Component {
                         <br/>
                         <Icon name='rocket'/>
                     </Header.Content>
-                </Header>
-
-
-                
-                
+                </Header>     
             </Container>
         )
     }
 }
 
 const mapStateToProps = state => {
-
-    
-    if(state.people) {
-        console.log('people is definded');
-    }
 
     return {
         peopleCount: state.people.results.length,
