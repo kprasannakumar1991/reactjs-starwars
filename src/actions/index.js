@@ -60,26 +60,26 @@ export const getData = () => async dispatch => {
 
 }
 
-// For testing: Not used by any component
-export const fetchPerson = (personUrl) => async (dispatch, getState) => {
+// only for testing: should not be used by any component
+export const fetchPersonFromServer = (personUrl) => async (dispatch, getState) => {
 
     // check if the url already exists in the redux-store
-    const matchedPeople = getState().people.filter(p => p.url === personUrl);
+    const matchedPeople = getState().people.results.filter(p => p.url === personUrl);
     if (matchedPeople.length > 0) {
         // the person info already exists in the client
 
         // TESTING: just for testing appending the existing person again back to redux store
         // This will lead to duplication.
-        // dispatch({
-        //     type: TYPES.FETCH_SINGLE_PERSON,
-        //     payload: matchedPeople[0]
-        // });
+        dispatch({
+            type: TYPES.SINGLE_PERSON,
+            payload: matchedPeople[0]
+        });
     } else {
         // need to fetch the person info from server and save it to the redux store
         // const response = await SW_API.get(personUrl);
 
         // dispatch({
-        //     type: TYPES.FETCH_SINGLE_PERSON,
+        //     type: TYPES.SINGLE_PERSON,
         //     payload: response.data
         // })
     }

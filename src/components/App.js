@@ -13,7 +13,7 @@ import Species from './species/Species';
 import Starships from './starships/Starships';
 import Vehicles from './vehicles/Vehicles';
 
-import PeopleDetails from './people/PeopleDetails';
+import PersonDetails from './people/PersonDetails';
 import FilmDetails from './films/FilmDetails';
 
 import {getData} from '../actions';
@@ -51,8 +51,8 @@ class App extends React.Component {
                             <Route exact path="/vehicles">
                                 <Vehicles />
                             </Route>
-                            <Route exact path="/peopledetails">
-                                <PeopleDetails/>
+                            <Route exact path="/persondetails">
+                                <PersonDetails/>
                             </Route>
                             <Route exact path="/filmdetails">
                                 <FilmDetails/>

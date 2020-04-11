@@ -1,25 +1,32 @@
-import React from 'react'
-import { Header, Table } from 'semantic-ui-react'
+import React from 'react';
+
+import {Link} from 'react-router-dom';
+import { Header, Table} from 'semantic-ui-react'
+
+import DetailsButton from '../templates/DetailsButton';
 
 class PeopleTable extends React.Component {
 
 
     renderRows = () => {
-        return this.props.list.map(people => {
+        return this.props.list.map(person => {
             return (
                 <Table.Row>
                         <Table.Cell>
                         <Header as='h4'>
                             <Header.Content>
-                            {people.name}
+                            {person.name}
                             {/* <Header.Subheader>{people.gender}</Header.Subheader> */}
                             </Header.Content>
                         </Header>
                         </Table.Cell>
-                        <Table.Cell>{people.gender}</Table.Cell>
-                        <Table.Cell>{people.films.length}</Table.Cell>
-                        {/* <Table.Cell>{people.vehicles.length}</Table.Cell> */}
-                        {/* <Table.Cell>{people.starships.length}</Table.Cell> */}
+                        <Table.Cell>{person.gender}</Table.Cell>
+                        <Table.Cell>{person.films.length}</Table.Cell>
+                        <Table.Cell>
+                            <Link to={{pathname: '/persondetails',state: {url: person.url}}}>
+                                    <DetailsButton />
+                            </Link>
+                        </Table.Cell>
                 </Table.Row>
             )
         })
@@ -33,8 +40,7 @@ class PeopleTable extends React.Component {
                     <Table.HeaderCell>Name</Table.HeaderCell>
                     <Table.HeaderCell>Gender</Table.HeaderCell>
                     <Table.HeaderCell>Films</Table.HeaderCell>
-                    {/* <Table.HeaderCell>Vehicles</Table.HeaderCell> */}
-                    {/* <Table.HeaderCell>Starships</Table.HeaderCell> */}
+                    <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
 

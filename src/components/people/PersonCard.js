@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Container, Divider} from 'semantic-ui-react';
 
-import {fetchDataFromServer} from '../../actions/index';
+import {fetchDataFromServer, fetchPersonFromServer} from '../../actions/index';
 import {SINGLE_PERSON}from '../../actions/types';
 
 
@@ -15,6 +15,10 @@ class PersonCard extends React.Component {
         if (!this.props.currentPerson) {
             // fetch the person data from server
             this.props.fetchDataFromServer(SINGLE_PERSON, this.props.personUrl);
+        } else {
+            // only for testing
+            // this will cause duplication of the same person in state.people.results inside the store
+            // this.props.fetchPersonFromServer(this.props.currentPerson.url);
         }
     }
 
@@ -45,4 +49,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchDataFromServer})(PersonCard);
+export default connect(mapStateToProps, {fetchDataFromServer, fetchPersonFromServer})(PersonCard);

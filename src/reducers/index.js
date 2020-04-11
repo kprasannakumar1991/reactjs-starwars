@@ -16,7 +16,10 @@ const peopleReducer = (people=initialState, action) => {
         } else {
             // adding the new person data to existing list of people in the store
             // and returing a brand new list to the store
-            return [...people, action.payload];
+            return {
+                count: people.count,
+                results: [...people.results, action.payload]
+            }
         }
     }
 
@@ -29,7 +32,10 @@ const planetsReducer = (planets=initialState, action) => {
         if (action.type === ACTION_TYPES.PLANETS) {
             return action.payload;
         } else {
-            return [...planets, action.payload];
+            return {
+                count: planets.count,
+                results: [...planets, action.payload]
+            }
         }
     }
 
@@ -42,7 +48,10 @@ const filmsReducer = (films=initialState, action) => {
         if (action.type === ACTION_TYPES.FILMS) {
             return action.payload;
         } else {
-            return [...films, action.payload];
+            return {
+                count: films.count,
+                results: [...films, action.payload]
+            }
         }
     }
 
@@ -55,7 +64,10 @@ const speciesReducer = (species=initialState, action) => {
         if (action.type === ACTION_TYPES.SPECIES) {
             return action.payload;
         } else {
-            return [...species, action.payload];
+            return {
+                count: species.count,
+                results: [...species, action.payload]
+            }
         }
     }
 
@@ -63,12 +75,15 @@ const speciesReducer = (species=initialState, action) => {
 }
 
 const starshipsReducer = (starships=initialState, action) => {
-    if (action.type === ACTION_TYPES.STARSHIPS || action.type === ACTION_TYPES.SINGLE_STARSHIPS) {
+    if (action.type === ACTION_TYPES.STARSHIPS || action.type === ACTION_TYPES.SINGLE_STARSHIP) {
 
         if (action.type === ACTION_TYPES.STARSHIPS) {
             return action.payload;
         } else {
-            return [...starships, action.payload];
+            return {
+                count: starships.count,
+                results: [...starships.results, action.payload]
+            }
         }
     }
 
@@ -76,12 +91,15 @@ const starshipsReducer = (starships=initialState, action) => {
 }
 
 const vehiclesReducer = (vehicles=initialState, action) => {
-    if (action.type === ACTION_TYPES.VEHICLES || action.type === ACTION_TYPES.SINGLE_VEHICLES) {
+    if (action.type === ACTION_TYPES.VEHICLES || action.type === ACTION_TYPES.SINGLE_VEHICLE) {
 
         if (action.type === ACTION_TYPES.VEHICLES) {
             return action.payload;
         } else {
-            return [...vehicles, action.payload];
+            return {
+                count: vehicles.count,
+                results: [...vehicles, action.payload]
+            }
         }
     }
 
