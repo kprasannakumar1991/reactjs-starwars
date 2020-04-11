@@ -23,7 +23,7 @@ class SortBlock extends React.Component {
 
         return this.props.elements.map(element => {
             return (
-                <Form.Field>
+                <Form.Field key={element.label}>
                     <Checkbox
                     radio
                     label={element.label}

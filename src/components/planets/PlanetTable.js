@@ -9,7 +9,7 @@ class PlanetTable extends React.Component {
     renderRows = () => {
         return this.props.list.map(planet => {
             return (
-                <Table.Row>
+                <Table.Row key={planet.url}>
                         <Table.Cell>
                         <Header as='h4'>
                             <Header.Content>

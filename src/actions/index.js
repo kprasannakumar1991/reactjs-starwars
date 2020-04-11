@@ -86,9 +86,14 @@ export const fetchPersonFromServer = (personUrl) => async (dispatch, getState) =
 }
 
 export const fetchDataFromServer = (type, url) => async (dispatch, getState) => {
-    const response = await SW_API.get(url);
-    dispatch({
-        type: type,
-        payload: response.data
-    })
+    try {
+        const response = await SW_API.get(url);
+        dispatch({
+            type: type,
+            payload: response.data
+        })
+    }
+    catch(error) {
+        console.log('Error while fetching data ' + JSON.stringify(error.message));
+    }
 }

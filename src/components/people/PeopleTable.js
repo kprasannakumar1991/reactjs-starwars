@@ -11,7 +11,7 @@ class PeopleTable extends React.Component {
     renderRows = () => {
         return this.props.list.map(person => {
             return (
-                <Table.Row>
+                <Table.Row key={person.url}>
                         <Table.Cell>
                         <Header as='h4'>
                             <Header.Content>

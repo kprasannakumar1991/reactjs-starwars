@@ -11,7 +11,7 @@ class FilmTable extends React.Component {
     renderRows = () => {
         return this.props.list.map(film => {
             return (
-                <Table.Row>
+                <Table.Row key={film.url}>
                         <Table.Cell>
                         <Header as='h4'>
                             <Header.Content>

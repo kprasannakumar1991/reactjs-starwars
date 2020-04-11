@@ -25,8 +25,13 @@ class ResourceCard extends React.Component {
 
     // props: url, type, currentResource, fetchDataFromServer
 
+    state = {
+        loadingInProgress: false
+    }
+
     componentDidMount() {
-        if (!this.props.currentResource) {
+        if (!this.props.currentResource && !this.state.loadingInProgress) {
+            this.setState({loadingInProgress: true})
             this.props.fetchDataFromServer(this.props.resourceType, this.props.resourceUrl);
         }
     }
