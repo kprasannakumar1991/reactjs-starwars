@@ -109,11 +109,7 @@ class People extends React.Component {
     renderTable = () => {
         this.selectedPeople = this.filterPeopleData();
         return (
-            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-            <p>{`Total ${this.selectedPeople.length} found`}</p>
-                 <Divider horizontal/>
-                 <PeopleTable list={this.selectedPeople} />
-            </Container>
+            <PeopleTable list={this.selectedPeople}/>
         )
     }
 

@@ -83,11 +83,7 @@ class Planets extends React.Component {
     renderTable = () => {
         this.selectedPlanets = this.filterData();
         return (
-            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-            <p>{`Total ${this.selectedPlanets.length} found`}</p>
-                 <Divider horizontal/>
-                 <PlanetTable list={this.selectedPlanets} />
-            </Container>
+            <PlanetTable list={this.selectedPlanets} />
         )
     }
     

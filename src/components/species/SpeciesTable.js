@@ -4,24 +4,23 @@ import {Container, Divider, Header, Table } from 'semantic-ui-react'
 
 import DetailsButton from '../templates/DetailsButton';
 
-const PlanetTable =(props) => {
+const SpeciesTable = (props) => {
 
     const renderRows = () => {
-        return props.list.map(planet => {
+        return props.list.map(species => {
             return (
-                <Table.Row key={planet.url}>
+                <Table.Row key={species.url}>
                         <Table.Cell>
                         <Header as='h4'>
                             <Header.Content>
-                            {planet.name}
+                            {species.name}
                             </Header.Content>
                         </Header>
                         </Table.Cell>
-                        <Table.Cell>{planet.diameter}</Table.Cell>
-                        <Table.Cell>{planet.residents.length}</Table.Cell>
-                        <Table.Cell>{planet.films.length}</Table.Cell>
+                        <Table.Cell>{species.classification}</Table.Cell>
+                        <Table.Cell>{species.language}</Table.Cell>
                         <Table.Cell>
-                            <Link to={{pathname: '/planetdetails',state: {url: planet.url}}}>
+                            <Link to={{pathname: '/speciesdetails',state: {url: species.url}}}>
                                     <DetailsButton />
                             </Link>
                         </Table.Cell>
@@ -36,9 +35,8 @@ const PlanetTable =(props) => {
                 <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Name</Table.HeaderCell>
-                    <Table.HeaderCell>Diameter</Table.HeaderCell>
-                    <Table.HeaderCell>Residents</Table.HeaderCell>
-                    <Table.HeaderCell>Films</Table.HeaderCell>
+                    <Table.HeaderCell>Classification</Table.HeaderCell>
+                    <Table.HeaderCell>Language</Table.HeaderCell>
                     <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
@@ -47,16 +45,22 @@ const PlanetTable =(props) => {
                     {renderRows()}
                 </Table.Body>
              </Table>
+
         )
     }
 
+    
     return (
+
         <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-            <p>{`Total ${props.list.length} found`}</p>
-                 <Divider horizontal/>
-                 {renderTable()}
-            </Container>
+        <p>{`Total ${props.list.length} found`}</p>
+                <Divider horizontal/>
+                {renderTable()}
+        </Container>
+
+        
     )
+    
 }
 
-export default PlanetTable;
+export default SpeciesTable;

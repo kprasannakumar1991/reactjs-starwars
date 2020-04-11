@@ -4,24 +4,25 @@ import {Container, Divider, Header, Table } from 'semantic-ui-react'
 
 import DetailsButton from '../templates/DetailsButton';
 
-const PlanetTable =(props) => {
+const VehiclesTable = (props) => {
 
     const renderRows = () => {
-        return props.list.map(planet => {
+        return props.list.map(vehicle => {
             return (
-                <Table.Row key={planet.url}>
+                <Table.Row key={vehicle.url}>
                         <Table.Cell>
                         <Header as='h4'>
                             <Header.Content>
-                            {planet.name}
+                            {vehicle.name}
                             </Header.Content>
                         </Header>
                         </Table.Cell>
-                        <Table.Cell>{planet.diameter}</Table.Cell>
-                        <Table.Cell>{planet.residents.length}</Table.Cell>
-                        <Table.Cell>{planet.films.length}</Table.Cell>
+                        <Table.Cell>{vehicle.vehicle_class}</Table.Cell>
+                        <Table.Cell>{vehicle.crew}</Table.Cell>
+                        <Table.Cell>{vehicle.passengers}</Table.Cell>
+
                         <Table.Cell>
-                            <Link to={{pathname: '/planetdetails',state: {url: planet.url}}}>
+                            <Link to={{pathname: '/vehicledetails',state: {url: vehicle.url}}}>
                                     <DetailsButton />
                             </Link>
                         </Table.Cell>
@@ -36,9 +37,10 @@ const PlanetTable =(props) => {
                 <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Name</Table.HeaderCell>
-                    <Table.HeaderCell>Diameter</Table.HeaderCell>
-                    <Table.HeaderCell>Residents</Table.HeaderCell>
-                    <Table.HeaderCell>Films</Table.HeaderCell>
+                    <Table.HeaderCell>Class</Table.HeaderCell>
+                    <Table.HeaderCell>Crew</Table.HeaderCell>
+                    <Table.HeaderCell>Passengers</Table.HeaderCell>
+
                     <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
@@ -47,16 +49,22 @@ const PlanetTable =(props) => {
                     {renderRows()}
                 </Table.Body>
              </Table>
+
         )
     }
 
+    
     return (
+
         <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-            <p>{`Total ${props.list.length} found`}</p>
-                 <Divider horizontal/>
-                 {renderTable()}
-            </Container>
+        <p>{`Total ${props.list.length} found`}</p>
+                <Divider horizontal/>
+                {renderTable()}
+        </Container>
+
+        
     )
+    
 }
 
-export default PlanetTable;
+export default VehiclesTable;

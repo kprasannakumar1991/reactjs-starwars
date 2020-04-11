@@ -1,15 +1,14 @@
 import React from 'react';
 
 import {Link} from 'react-router-dom';
-import { Header, Table} from 'semantic-ui-react'
+import {Container, Divider, Header, Table} from 'semantic-ui-react'
 
 import DetailsButton from '../templates/DetailsButton';
 
-class FilmTable extends React.Component {
+const FilmTable = (props) => {
 
-
-    renderRows = () => {
-        return this.props.list.map(film => {
+    const renderRows = () => {
+        return props.list.map(film => {
             return (
                 <Table.Row key={film.url}>
                         <Table.Cell>
@@ -33,7 +32,7 @@ class FilmTable extends React.Component {
         })
     }
 
-    render() {
+    const renderTable = () => {
         return (
             <Table basic='very' celled collapsing>
                 <Table.Header>
@@ -46,11 +45,21 @@ class FilmTable extends React.Component {
                 </Table.Header>
 
                 <Table.Body>
-                    {this.renderRows()}
+                    {renderRows()}
                 </Table.Body>
              </Table>
         )
     }
+
+    return (
+        <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
+        <p>{`Total ${props.list.length} found`}</p>
+                <Divider horizontal/>
+                {renderTable()}
+        </Container>
+
+        
+    )
 }
 
 export default FilmTable;

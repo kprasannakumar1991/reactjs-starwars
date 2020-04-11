@@ -1,15 +1,15 @@
 import React from 'react';
 
 import {Link} from 'react-router-dom';
-import { Header, Table} from 'semantic-ui-react'
+import {Container, Divider, Header, Table} from 'semantic-ui-react'
 
 import DetailsButton from '../templates/DetailsButton';
 
-class PeopleTable extends React.Component {
+const PeopleTable = (props) => {
 
 
-    renderRows = () => {
-        return this.props.list.map(person => {
+    const renderRows = () => {
+        return props.list.map(person => {
             return (
                 <Table.Row key={person.url}>
                         <Table.Cell>
@@ -32,7 +32,7 @@ class PeopleTable extends React.Component {
         })
     }
 
-    render() {
+    const renderTable = () => {
         return (
             <Table basic='very' celled collapsing>
                 <Table.Header>
@@ -45,11 +45,19 @@ class PeopleTable extends React.Component {
                 </Table.Header>
 
                 <Table.Body>
-                    {this.renderRows()}
+                    {renderRows()}
                 </Table.Body>
              </Table>
         )
     }
+
+    return (
+        <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
+            <p>{`Total ${props.list.length} found`}</p>
+                 <Divider horizontal/>
+                 {renderTable()}
+            </Container>
+    )
 }
 
 export default PeopleTable;

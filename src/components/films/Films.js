@@ -86,11 +86,7 @@ class Films extends React.Component {
     renderTable = () => {
         this.selectedList = this.filterData();
         return (
-            <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
-            <p>{`Total ${this.selectedList.length} found`}</p>
-                 <Divider horizontal/>
-                 <FilmTable list={this.selectedList} />
-            </Container>
+            <FilmTable list={this.selectedList}/>
         )
     }
     
