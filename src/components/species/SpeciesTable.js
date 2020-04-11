@@ -18,7 +18,7 @@ const SpeciesTable = (props) => {
                         </Header>
                         </Table.Cell>
                         <Table.Cell>{species.classification}</Table.Cell>
-                        <Table.Cell>{species.language}</Table.Cell>
+                        <Table.Cell>{species.average_height}</Table.Cell>
                         <Table.Cell>
                             <Link to={{pathname: '/speciesdetails',state: {url: species.url}}}>
                                     <DetailsButton />
@@ -36,7 +36,7 @@ const SpeciesTable = (props) => {
                 <Table.Row>
                     <Table.HeaderCell>Name</Table.HeaderCell>
                     <Table.HeaderCell>Classification</Table.HeaderCell>
-                    <Table.HeaderCell>Language</Table.HeaderCell>
+                    <Table.HeaderCell>Height</Table.HeaderCell>
                     <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>

@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import {Container, Grid} from 'semantic-ui-react';
 import SearchBar from '../templates/SearchBar';
+import SortBlock from '../templates/SortBlock';
 import VehiclesTable from './VehiclesTable';
 import VehicleStatistics from './VehicleStatistics'
 
@@ -14,8 +15,20 @@ class Vehicles extends React.Component {
     constructor(props) {
         super(props);
 
+        this.sortOptions = [
+            {
+                label: "Low \u2192 High",
+                value: "asc"
+            },
+            {
+                label: "High \u2192 Low",
+                value: "desc"
+            }
+        ]
+
         this.state = {
             searchString: '',
+            sortValue: null
         }
 
         this.selectedList = [];
@@ -26,6 +39,14 @@ class Vehicles extends React.Component {
 
         this.setState({searchString: text.toLowerCase()})
 
+    }
+
+    onSortDataSelected = (title, value) => {
+        if(title === 'Speed') {
+            this.setState({
+                sortValue: value
+            });
+        }
     }
 
     filterData = () => {
@@ -41,7 +62,23 @@ class Vehicles extends React.Component {
     
             });
         }
-        
+
+        // need to convert speed type from string to Int
+        list = list.map(e => {
+            const speedInStr = e.max_atmosphering_speed.split('km')[0];
+            if (isNaN(speedInStr)) {
+                e.speed = 0;
+            } else {
+                e.speed = parseInt(e.max_atmosphering_speed)
+            }
+  
+            return e;
+        });
+
+        if(this.state.sortValue) {
+            list = _.orderBy(list, ['speed'],[this.state.sortValue])
+        }
+
         return list;
     }
    
@@ -49,6 +86,7 @@ class Vehicles extends React.Component {
         return (
                 <Container>
                     <SearchBar onSearchTextChange={this.onSearchTextChange} placeholder="Search vehicle by name"/>
+                    <SortBlock title="Speed" elements={this.sortOptions} onSortDataSelected={this.onSortDataSelected}/>
                 </Container>
         )
     }

@@ -18,8 +18,7 @@ const StarshipsTable = (props) => {
                         </Header>
                         </Table.Cell>
                         <Table.Cell>{ship.starship_class}</Table.Cell>
-                        <Table.Cell>{ship.crew}</Table.Cell>
-                        <Table.Cell>{ship.passengers}</Table.Cell>
+                        <Table.Cell>{ship.max_atmosphering_speed}</Table.Cell>
 
                         <Table.Cell>
                             <Link to={{pathname: '/starshipdetails',state: {url: ship.url}}}>
@@ -38,8 +37,7 @@ const StarshipsTable = (props) => {
                 <Table.Row>
                     <Table.HeaderCell>Name</Table.HeaderCell>
                     <Table.HeaderCell>Class</Table.HeaderCell>
-                    <Table.HeaderCell>Crew</Table.HeaderCell>
-                    <Table.HeaderCell>Passengers</Table.HeaderCell>
+                    <Table.HeaderCell>Speed</Table.HeaderCell>
 
                     <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>

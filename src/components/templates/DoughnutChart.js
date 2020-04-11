@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Container} from 'semantic-ui-react';
-import {Pie} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 
 const PieChart = (props) => {
     
@@ -18,7 +18,7 @@ const PieChart = (props) => {
 
         return (
             <Container>
-                <Pie 
+                <Doughnut 
                     data={{
                         labels: lables,
                         datasets: datasets
@@ -27,6 +27,7 @@ const PieChart = (props) => {
                     // width="50%"
                     options = {{
                         animateScale: true,
+                        cutoutPercentage: 50,
                         legend: {
                             display: false
                         }

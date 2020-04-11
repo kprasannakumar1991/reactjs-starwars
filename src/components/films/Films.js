@@ -7,6 +7,7 @@ import {Container, Grid, Divider} from 'semantic-ui-react';
 import SearchBar from '../templates/SearchBar';
 import SortBlock from '../templates/SortBlock';
 import FilmTable from './FilmTable';
+import FilmStatistics from './FilmsStatistics';
 
 
 class Films extends React.Component {
@@ -92,9 +93,7 @@ class Films extends React.Component {
     
     renderStatistics = () => {
         return (
-            <Container>
-                
-            </Container>
+            <FilmStatistics list={this.selectedList}/>
         )
     }
     render() {

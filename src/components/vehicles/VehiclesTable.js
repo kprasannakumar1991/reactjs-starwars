@@ -18,9 +18,7 @@ const VehiclesTable = (props) => {
                         </Header>
                         </Table.Cell>
                         <Table.Cell>{vehicle.vehicle_class}</Table.Cell>
-                        <Table.Cell>{vehicle.crew}</Table.Cell>
-                        <Table.Cell>{vehicle.passengers}</Table.Cell>
-
+                        <Table.Cell>{vehicle.max_atmosphering_speed}</Table.Cell>
                         <Table.Cell>
                             <Link to={{pathname: '/vehicledetails',state: {url: vehicle.url}}}>
                                     <DetailsButton />
@@ -38,9 +36,7 @@ const VehiclesTable = (props) => {
                 <Table.Row>
                     <Table.HeaderCell>Name</Table.HeaderCell>
                     <Table.HeaderCell>Class</Table.HeaderCell>
-                    <Table.HeaderCell>Crew</Table.HeaderCell>
-                    <Table.HeaderCell>Passengers</Table.HeaderCell>
-
+                    <Table.HeaderCell>Speed</Table.HeaderCell>
                     <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>

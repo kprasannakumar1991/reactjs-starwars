@@ -6,6 +6,7 @@ import _ from 'lodash';
 import {Container, Grid} from 'semantic-ui-react';
 import SearchBar from '../templates/SearchBar';
 import SpeciesTable from './SpeciesTable';
+import SpeciesStatistics from './SpeciesStatistics';
 
 
 class Species extends React.Component {
@@ -61,9 +62,7 @@ class Species extends React.Component {
     
     renderStatistics = () => {
         return (
-            <Container>
-                
-            </Container>
+                <SpeciesStatistics list={this.selectedList}/>
         )
     }
     render() {

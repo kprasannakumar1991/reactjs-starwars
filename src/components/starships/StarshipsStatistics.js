@@ -4,18 +4,18 @@ import {Container} from 'semantic-ui-react';
 import BarChart from '../templates/BarChart';
 import PieChart from '../templates/PieChart';
 
-const VehicleStatistics = (props) => {
+const StarshipsStatistics = (props) => {
 
     const prepareLabels = () => {
-        return [...new Set(props.list.map(v => v.vehicle_class))];
+        return [...new Set(props.list.map(s => s.starship_class))];
     }
 
     const prepareData = () => {
         var data = []
         var labels = prepareLabels();
         for (var i = 0; i < labels.length; i++) {
-            const vehicleClass = labels[i];
-            const count = props.list.reduce((total, v) => (v.vehicle_class === vehicleClass? (total+1): total), 0);
+            const shipClass = labels[i];
+            const count = props.list.reduce((total, s) => (s.starship_class === shipClass? (total+1): total), 0);
             data.push(count);
         }
 
@@ -24,11 +24,11 @@ const VehicleStatistics = (props) => {
 
 
     const prepareLabelsForSpeed = () => {
-        return props.list.map(v => v.name);
+        return props.list.map(s => s.name);
     }
 
     const prepareDataForSpeed = () => {
-        return props.list.map(v => v.speed);
+        return props.list.map(s => s.speed);
     }
 
     const renderChartForClass = () => {
@@ -58,4 +58,4 @@ const VehicleStatistics = (props) => {
     )
 }
 
-export default VehicleStatistics;
+export default StarshipsStatistics;

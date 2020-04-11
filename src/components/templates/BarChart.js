@@ -31,7 +31,7 @@ const BarChart = (props) => {
                     scales: {
                       xAxes:[
                         {
-                          display: false
+                          display: true
                         }
                       ],
                       yAxes: [
