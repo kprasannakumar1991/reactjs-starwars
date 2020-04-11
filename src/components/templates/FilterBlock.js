@@ -39,7 +39,7 @@ class FilterBlock extends React.Component {
         return this.props.elements.map(element => {        
             const color = element.active ? 'secondary color="black"': 'basic color="black"';
             return (
-                <Button className={color} onClick={()=>this.onButtonClicked(element)} size="tiny">{element.label}</Button>
+                <Button key={element.label} className={color} onClick={()=>this.onButtonClicked(element)} size="tiny">{element.label}</Button>
                 )
         })
     }

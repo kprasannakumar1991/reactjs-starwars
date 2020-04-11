@@ -16,6 +16,9 @@ import Vehicles from './vehicles/Vehicles';
 import PersonDetails from './people/PersonDetails';
 import FilmDetails from './films/FilmDetails';
 import PlanetDetails from './planets/PlanetDetails';
+import SpeciesDetails from './species/SpeciesDetails';
+import StarshipDetails from './starships/StarshipDetails';
+import VehicleDetails from './vehicles/VehicleDetails';
 
 import {getData} from '../actions';
 
@@ -60,6 +63,15 @@ class App extends React.Component {
                             </Route>
                             <Route exact path="/planetdetails">
                                 <PlanetDetails/>
+                            </Route>
+                            <Route exact path="/speciesdetails">
+                                <SpeciesDetails/>
+                            </Route>
+                            <Route exact path="/starshipdetails">
+                                <StarshipDetails/>
+                            </Route>
+                            <Route exact path="/vehicledetails">
+                                <VehicleDetails/>
                             </Route>
                         </Switch>
                     </Container>
