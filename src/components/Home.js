@@ -40,7 +40,7 @@ class Home extends React.Component {
                 <Header as='h4' style={{textAlign: 'center'}}>
                     <Header.Content>
                         Explore the app to increase the counts
-                        <Header.Subheader>Let the force be with you...</Header.Subheader>
+                        <Header.Subheader>May the force be with you...</Header.Subheader>
                         <br/>
                         <Icon name='rocket'/>
                     </Header.Content>
