@@ -87,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
     // this data is coming from Link payload
     const currentFilmUrl = ownProps.location.state.url;
 
-    const films = state.films.filter(film => film.url === currentFilmUrl);
+    const films = state.films.results.filter(film => film.url === currentFilmUrl);
     const filmCharacters = films[0].characters;
     const planets = films[0].planets;
 

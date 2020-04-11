@@ -38,7 +38,7 @@ class PersonCard extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 
-    const matchedPeople = state.people.filter(p => p.url === ownProps.personUrl);
+    const matchedPeople = state.people.results.filter(p => p.url === ownProps.personUrl);
 
     return {
         currentPerson: matchedPeople[0]        

@@ -117,7 +117,7 @@ class Planets extends React.Component {
 
 const mapStateToProps = state => {
 
-    return {planets: state.planets};
+    return {planets: state.planets.results};
 }
 
 

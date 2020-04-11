@@ -144,7 +144,7 @@ class People extends React.Component {
 
 const mapStateToProps = state => {
 
-    return {people: state.people};
+    return {people: state.people.results};
 }
 
 export default connect(mapStateToProps)(People);

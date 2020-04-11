@@ -11,30 +11,51 @@ export const getData = () => async dispatch => {
         const starships = await axios.get('./data/starships.json');
         const vehicles = await axios.get('./data/vehicles.json');
 
+        console.log('people ' + people.data);
+
         dispatch({
             type: TYPES.PEOPLE,
-            payload: people.data.results
+            payload: {
+                count: people.data.count,
+                results: people.data.results
+            }
         });
 
         dispatch({
             type: TYPES.PLANETS,
-            payload: planets.data.results
+            payload: {
+                count: people.data.count,
+                results:planets.data.results}
         })
         dispatch({
             type: TYPES.FILMS,
-            payload: films.data.results
+            payload: {
+                count: films.data.count,
+                results: films.data.results
+            }
         })
+
         dispatch({
             type: TYPES.SPECIES,
-            payload: species.data.results
+            payload: {
+                count: species.data.count,
+                results: species.data.results
+            }
         })
+
         dispatch({
             type: TYPES.STARSHIPS,
-            payload: starships.data.results
+            payload: {
+                count: starships.data.count,
+                results: starships.data.results
+            }
         })
         dispatch({
             type: TYPES.VEHICLES,
-            payload: vehicles.data.results
+            payload: {
+                count: vehicles.data.count,
+                results: vehicles.data.results
+            }
         })
 
 }

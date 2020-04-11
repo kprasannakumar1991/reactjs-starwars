@@ -120,7 +120,7 @@ class Films extends React.Component {
 
 const mapStateToProps = state => {
 
-    return {films: state.films};
+    return {films: state.films.results};
 }
 
 

@@ -2,7 +2,12 @@ import {combineReducers} from 'redux';
 
 import * as ACTION_TYPES from '../actions/types';
 
-const peopleReducer = (people=[], action) => {
+const initialState = {
+    count: 0,
+    results: []
+}
+
+const peopleReducer = (people=initialState, action) => {
     if (action.type === ACTION_TYPES.PEOPLE || action.type === ACTION_TYPES.SINGLE_PERSON) {
 
         if (action.type === ACTION_TYPES.PEOPLE) {
@@ -18,7 +23,7 @@ const peopleReducer = (people=[], action) => {
     return people;
 }
 
-const planetsReducer = (planets=[], action) => {
+const planetsReducer = (planets=initialState, action) => {
     if (action.type === ACTION_TYPES.PLANETS || action.type === ACTION_TYPES.SINGLE_PLANET) {
 
         if (action.type === ACTION_TYPES.PLANETS) {
@@ -31,7 +36,7 @@ const planetsReducer = (planets=[], action) => {
     return planets;
 }
 
-const filmsReducer = (films=[], action) => {
+const filmsReducer = (films=initialState, action) => {
     if (action.type === ACTION_TYPES.FILMS || action.type === ACTION_TYPES.SINGLE_FILM) {
 
         if (action.type === ACTION_TYPES.FILMS) {
@@ -44,7 +49,7 @@ const filmsReducer = (films=[], action) => {
     return films;
 }
 
-const speciesReducer = (species=[], action) => {
+const speciesReducer = (species=initialState, action) => {
     if (action.type === ACTION_TYPES.SPECIES || action.type === ACTION_TYPES.SINGLE_SPECIES) {
 
         if (action.type === ACTION_TYPES.SPECIES) {
@@ -57,7 +62,7 @@ const speciesReducer = (species=[], action) => {
     return species;
 }
 
-const starshipsReducer = (starships=[], action) => {
+const starshipsReducer = (starships=initialState, action) => {
     if (action.type === ACTION_TYPES.STARSHIPS || action.type === ACTION_TYPES.SINGLE_STARSHIPS) {
 
         if (action.type === ACTION_TYPES.STARSHIPS) {
@@ -70,7 +75,7 @@ const starshipsReducer = (starships=[], action) => {
     return starships;
 }
 
-const vehiclesReducer = (vehicles=[], action) => {
+const vehiclesReducer = (vehicles=initialState, action) => {
     if (action.type === ACTION_TYPES.VEHICLES || action.type === ACTION_TYPES.SINGLE_VEHICLES) {
 
         if (action.type === ACTION_TYPES.VEHICLES) {

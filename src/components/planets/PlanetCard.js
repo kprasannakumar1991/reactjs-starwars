@@ -37,7 +37,7 @@ class PlanetCard extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 
-    const matchedPlanets = state.planets.filter(p => p.url === ownProps.planetUrl);
+    const matchedPlanets = state.planets.results.filter(p => p.url === ownProps.planetUrl);
 
     return {
         currentPlanet: matchedPlanets[0]        
