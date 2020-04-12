@@ -63,7 +63,7 @@ class StarshipDetails extends React.Component {
         return (
             <Container>
                 <Header as='h2'>
-                    Species details:
+                    Starship details:
                 </Header>
                 <Grid>
                     <Grid.Column width={4}>
