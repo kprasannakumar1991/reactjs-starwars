@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
-import {Container, Grid, Divider} from 'semantic-ui-react';
+import {Container, Grid} from 'semantic-ui-react';
 import SearchBar from '../templates/SearchBar';
 import SortBlock from '../templates/SortBlock';
 import PlanetTable from './PlanetTable';
