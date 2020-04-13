@@ -9,7 +9,7 @@ class Home extends React.Component {
     
     render() {
         return (
-            <Container>
+            <Container style={{marginTop: '100px'}}>
 
                 <Grid>
                     <Grid.Row columns={6}>
