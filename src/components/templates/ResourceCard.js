@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {connect} from 'react-redux';
-import {Container, Divider, Label, Dimmer, Loader} from 'semantic-ui-react';
+import {Container, Divider, Label} from 'semantic-ui-react';
 
 import {fetchDataFromServer} from '../../actions/index';
 import {
@@ -27,7 +27,7 @@ class ResourceCard extends React.Component {
 
     componentDidMount() {
         if (!this.props.currentResource) {
-            this.props.fetchDataFromServer(this.props.resourceType, this.props.resourceUrl);
+            this.props.fetchDataFromServer(this.props.type, this.props.url);
         }
     }
 
