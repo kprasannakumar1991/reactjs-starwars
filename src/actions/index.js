@@ -1,6 +1,18 @@
 import SW_API from '../apis/SW_API';
 import axios from 'axios';
 import * as TYPES from './types';
+import {
+    PEOPLE,
+    CHARACTERS,
+    PILOTS,
+    RESIDENTS,
+    FILMS,
+    PLANETS,
+    SPECIES,
+    STARSHIPS,
+    VEHICLES
+} from '../utils/resourceTypes';
+
 
 // called from App.js
 export const getDataFromServer = () => async dispatch => {
@@ -118,17 +130,44 @@ export const getData = () => async dispatch => {
 
 }
 
-export const fetchDataFromServer = (type, url) => async (dispatch, getState) => {
+export const fetchDataFromServer = (resourceType, resourceUrl) => async (dispatch, getState) => {
+
+    const actionType = getActionType(resourceType);
+
     try {
-        const response = await SW_API.get(url);
+        const response = await SW_API.get(resourceUrl);
         dispatch({
-            type: type,
+            type: actionType,
             payload: response.data
         })
     }
     catch(error) {
         console.log('Error while fetching data ' + JSON.stringify(error.message));
     }
+}
+
+const getActionType = (resourceType) => {
+
+    var actionType;
+
+    if (resourceType === CHARACTERS || 
+        resourceType === PEOPLE || 
+        resourceType === PILOTS ||
+        resourceType === RESIDENTS ) {
+        actionType = TYPES.SINGLE_PERSON;
+    } else if (resourceType === FILMS) {
+        actionType = TYPES.SINGLE_FILM;
+    } else if (resourceType === PLANETS) {
+        actionType = TYPES.SINGLE_PLANET;
+    } else if (resourceType === SPECIES) {
+        actionType = TYPES.SINGLE_SPECIES;
+    } else if (resourceType === STARSHIPS) {
+        actionType = TYPES.SINGLE_STARSHIP;
+    } else if (resourceType === VEHICLES) {
+        actionType = TYPES.SINGLE_VEHICLE;
+    }
+
+    return actionType;
 }
 
 // only for testing: should not be used by any component
