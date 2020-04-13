@@ -45,6 +45,8 @@ class PlanetDetails extends React.Component {
     }
 
     render() {
+        const planet = this.props.planet;
+        
         return (
             <Container>
                 <Header as='h2'>
@@ -55,10 +57,10 @@ class PlanetDetails extends React.Component {
                         {this.renderBasicInformation()} 
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.planet} child={RESIDENTS} />
+                        <ResourceContainer list={planet[RESIDENTS]} type={RESIDENTS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.planet} child={FILMS} />
+                        <ResourceContainer list={planet[FILMS]} type={FILMS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
                     </Grid.Column>

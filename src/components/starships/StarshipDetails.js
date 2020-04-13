@@ -60,6 +60,8 @@ class StarshipDetails extends React.Component {
     }
 
     render() {
+        const starship = this.props.starship;
+        
         return (
             <Container>
                 <Header as='h2'>
@@ -70,10 +72,10 @@ class StarshipDetails extends React.Component {
                         {this.renderBasicInformation()} 
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.starship} child={FILMS} />
+                        <ResourceContainer list={starship[FILMS]} type={FILMS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.starship} child={PILOTS} />
+                        <ResourceContainer list={starship[PILOTS]} type={PILOTS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
                     </Grid.Column>

@@ -35,6 +35,8 @@ class PersonDetails extends React.Component {
     }
 
     render() {
+        const person = this.props.person;
+        
         return (
             <Container>
                 <Header as='h2'>
@@ -45,13 +47,13 @@ class PersonDetails extends React.Component {
                         {this.renderBasicInformation()} 
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.person} child={FILMS} />
+                        <ResourceContainer list={person[FILMS]} type={FILMS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.person} child={STARSHIPS} />
+                        <ResourceContainer list={person[STARSHIPS]} type={STARSHIPS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.person} child={SPECIES} />
+                        <ResourceContainer list={person[SPECIES]} type={SPECIES} />
                     </Grid.Column>
                 </Grid>    
             </Container>

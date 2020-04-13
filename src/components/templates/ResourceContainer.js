@@ -3,18 +3,18 @@ import React from 'react';
 import {Container, Header, Divider, List} from 'semantic-ui-react';
 import ResourceCard from './ResourceCard';
 
-const ResourceContainer = ({parent, child}) => {
+const ResourceContainer = ({list, type}) => {
 
     return (
         <Container style={{backgroundColor: '#f7f7f7', padding: '20px', margin:'20px'}}>
             <Header as='h5'>
-                {`${parent[child].length} ${child}`}    
+                {`${list.length} ${type}`}    
             </Header>
             <Divider />
             <List>
                 {
-                    parent[child].map(childUrl => {
-                        return <ResourceCard key={childUrl} type={child} url={childUrl}/>
+                    list.map(url => {
+                        return <ResourceCard key={url} type={type} url={url}/>
                     })
                 }
             </List>

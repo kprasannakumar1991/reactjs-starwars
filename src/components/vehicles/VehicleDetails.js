@@ -60,6 +60,8 @@ class VehicleDetails extends React.Component {
     }
 
     render() {
+        const vehicle = this.props.vehicle;
+
         return (
             <Container>
                 <Header as='h2'>
@@ -70,10 +72,10 @@ class VehicleDetails extends React.Component {
                         {this.renderBasicInformation()} 
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.vehicle} child={FILMS} />
+                        <ResourceContainer list={vehicle[FILMS]} type={FILMS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.vehicle} child={PILOTS} />
+                        <ResourceContainer list={vehicle[PILOTS]} type={PILOTS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
                     </Grid.Column>

@@ -40,6 +40,8 @@ class FilmDetails extends React.Component {
     }
 
     render() {
+        const film = this.props.film;
+
         return (
             <Container>
                 <Header as='h2'>
@@ -50,16 +52,16 @@ class FilmDetails extends React.Component {
                         {this.renderBasicInformation()} 
                     </Grid.Column>
                     <Grid.Column width={3}>
-                        <ResourceContainer parent={this.props.film} child={CHARACTERS} />
+                        <ResourceContainer list={film[CHARACTERS]} type={CHARACTERS} />
                     </Grid.Column>
                     <Grid.Column width={3}>
-                        <ResourceContainer parent={this.props.film} child={PLANETS} />
+                        <ResourceContainer list={film[PLANETS]} type={PLANETS} />
                     </Grid.Column>
                     <Grid.Column width={3}>
-                        <ResourceContainer parent={this.props.film} child={STARSHIPS} />
+                        <ResourceContainer list={film[STARSHIPS]} type={STARSHIPS} />
                     </Grid.Column>
                     <Grid.Column width={3}>
-                        <ResourceContainer parent={this.props.film} child={VEHICLES} />
+                        <ResourceContainer list={film[VEHICLES]} type={VEHICLES} />
                     </Grid.Column>
                     
                 </Grid>    

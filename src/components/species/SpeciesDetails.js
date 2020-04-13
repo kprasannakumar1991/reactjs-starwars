@@ -41,6 +41,8 @@ class SpeciesDetails extends React.Component {
     }
 
     render() {
+        const species = this.props.species;
+
         return (
             <Container>
                 <Header as='h2'>
@@ -51,10 +53,10 @@ class SpeciesDetails extends React.Component {
                         {this.renderBasicInformation()} 
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.species} child={FILMS} />
+                        <ResourceContainer list={species[FILMS]} type={FILMS} />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <ResourceContainer parent={this.props.species} child={PEOPLE} />
+                        <ResourceContainer list={species[PEOPLE]} type={PEOPLE} />
                     </Grid.Column>
                     <Grid.Column width={4}>
                     </Grid.Column>
