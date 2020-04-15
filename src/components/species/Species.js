@@ -25,7 +25,7 @@ class Species extends React.Component {
     }
 
     filterData = () => {
-        var list = this.props.species;
+        let list = this.props.species;
 
         if (this.state.searchString) {
             list = _.filter(this.props.species, (s) => {

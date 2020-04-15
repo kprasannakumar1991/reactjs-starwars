@@ -6,7 +6,7 @@ class NavigationBar extends React.Component{
     
     render() {
 
-        var activeItem = this.props.location.pathname;
+        let activeItem = this.props.location.pathname;
         
         return (
             <Segment inverted>

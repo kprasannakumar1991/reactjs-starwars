@@ -58,7 +58,7 @@ const mapStateToProps = (state, ownProps) => {
     const resourceType = ownProps.type;
     const resourceUrl = ownProps.url;
 
-    var resources = [];
+    let resources = [];
 
     if (resourceType === PEOPLE || resourceType === CHARACTERS || resourceType === PILOTS || resourceType === RESIDENTS) {
         resources = state.people.results.filter(item => item.url === resourceUrl);

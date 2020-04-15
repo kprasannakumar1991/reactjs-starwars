@@ -46,7 +46,7 @@ class Vehicles extends React.Component {
     }
 
     filterData = () => {
-        var list = this.props.vehicles;
+        let list = this.props.vehicles;
 
         if (this.state.searchString) {
             list = _.filter(this.props.vehicles, (vehicle) => {

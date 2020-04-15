@@ -11,9 +11,9 @@ const VehicleStatistics = (props) => {
     }
 
     const prepareData = () => {
-        var data = []
-        var labels = prepareLabels();
-        for (var i = 0; i < labels.length; i++) {
+        let data = []
+        let labels = prepareLabels();
+        for (let i = 0; i < labels.length; i++) {
             const vehicleClass = labels[i];
             const count = props.list.reduce((total, v) => (v.vehicle_class === vehicleClass? (total+1): total), 0);
             data.push(count);

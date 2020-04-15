@@ -10,9 +10,9 @@ const FilmStatistics = (props) => {
     }
 
     const prepareData = () => {
-        var data = []
-        var labels = prepareLabels();
-        for (var i = 0; i < labels.length; i++) {
+        let data = []
+        let labels = prepareLabels();
+        for (let i = 0; i < labels.length; i++) {
             const director = labels[i];
             const count = props.list.reduce((total, film) => (film.director === director? (total+1): total), 0);
             data.push(count);

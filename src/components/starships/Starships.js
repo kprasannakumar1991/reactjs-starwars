@@ -46,7 +46,7 @@ class Starships extends React.Component {
     }
 
     filterData = () => {
-        var list = this.props.starships;
+        let list = this.props.starships;
 
         if (this.state.searchString) {
             list = _.filter(this.props.starships, (ship) => {

@@ -48,14 +48,17 @@ class Planets extends React.Component {
     }
     
     filterData = () => {
+        let list = this.props.planets;
 
-        var list = _.filter(this.props.planets, (p) => {
-            // filter based on search string
-            const nameMatched =  p.name.toLowerCase().includes(this.state.searchString);
-            
-            return nameMatched;
-
-        });
+        if (this.state.searchString) {
+            list = _.filter(this.props.planets, (p) => {
+                // filter based on search string
+                const nameMatched =  p.name.toLowerCase().includes(this.state.searchString);
+                
+                return nameMatched;
+    
+            });
+        }
 
         list = list.map(e => {
             e.diameter = parseInt(e.diameter)

@@ -71,21 +71,25 @@ class People extends React.Component {
     }
 
     filterData = () => {
+        let list = this.props.people;
 
-        var list = _.filter(this.props.people, (p) => {
-            // filter based on search string
-            const nameMatched =  p.name.toLowerCase().includes(this.state.searchString);
-
-            // filter based on Gender selection
-            var genderMatched = true;
-            if (this.state.genders.length > 0) {
-                genderMatched = this.state.genders.some(e => ((e.value === p.gender) && e.active));
-
-            }
-
-            return nameMatched && genderMatched;
-
-        });
+        if (this.state.searchString) {
+            list = _.filter(this.props.people, (p) => {
+                // filter based on search string
+                const nameMatched =  p.name.toLowerCase().includes(this.state.searchString);
+    
+                // filter based on Gender selection
+                let genderMatched = true;
+                if (this.state.genders.length > 0) {
+                    genderMatched = this.state.genders.some(e => ((e.value === p.gender) && e.active));
+    
+                }
+    
+                return nameMatched && genderMatched;
+    
+            });
+        }
+        
 
         if(this.state.sortingFilms) {
             list = _.orderBy(list, ['films.length'],[this.state.sortingFilms])

@@ -148,7 +148,7 @@ export const fetchDataFromServer = (resourceType, resourceUrl) => async (dispatc
 
 const getActionType = (resourceType) => {
 
-    var actionType;
+    let actionType;
 
     if (resourceType === CHARACTERS || 
         resourceType === PEOPLE || 

@@ -50,7 +50,7 @@ class Films extends React.Component {
     
     filterData = () => {
 
-        var list = this.props.films;
+        let list = this.props.films;
 
         if (this.state.searchString) {
             list = _.filter(this.props.films, (film) => {
