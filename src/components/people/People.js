@@ -49,8 +49,6 @@ class People extends React.Component {
             genders: [],
             sortingFilms: null
         }
-
-        this.selectedPeople = [];
     }
 
 
@@ -72,7 +70,7 @@ class People extends React.Component {
         }
     }
 
-    filterPeopleData = () => {
+    filterData = () => {
 
         var list = _.filter(this.props.people, (p) => {
             // filter based on search string
@@ -106,32 +104,31 @@ class People extends React.Component {
         )
     }
 
-    renderTable = () => {
-        this.selectedPeople = this.filterPeopleData();
+    renderTable = (list) => {
         return (
-            <PeopleTable list={this.selectedPeople}/>
+            <PeopleTable list={list}/>
         )
     }
 
-    renderStatistics = () => {        
+    renderStatistics = (list) => {        
         return (
-            <Container>
-                <PeopleStats list={this.selectedPeople}/>
-            </Container>
+            <PeopleStats list={list}/>
         )
     }
     
     render() {
+        const filteredList = this.filterData();
+
         return (
             <Grid>
                 <Grid.Column width={4}>
                     {this.renderSelectionOptions()} 
                 </Grid.Column>
                 <Grid.Column width={8}>
-                    {this.renderTable()}
+                    {this.renderTable(filteredList)}
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    {this.renderStatistics()}
+                    {this.renderStatistics(filteredList)}
                 </Grid.Column>
             </Grid>
         )

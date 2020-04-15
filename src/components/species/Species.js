@@ -17,19 +17,14 @@ class Species extends React.Component {
         this.state = {
             searchString: '',
         }
-
-        this.selectedList = [];
     }
 
 
     onSearchTextChange  = (text) => {
-
         this.setState({searchString: text.toLowerCase()})
-
     }
 
     filterData = () => {
-
         var list = this.props.species;
 
         if (this.state.searchString) {
@@ -53,29 +48,30 @@ class Species extends React.Component {
         )
     }
 
-    renderTable = () => {
-        this.selectedList = this.filterData();
+    renderTable = (list) => {
         return (
-            <SpeciesTable list={this.selectedList}/>
+            <SpeciesTable list={list}/>
         )
     }
     
-    renderStatistics = () => {
+    renderStatistics = (list) => {
         return (
-                <SpeciesStatistics list={this.selectedList}/>
+            <SpeciesStatistics list={list}/>
         )
     }
     render() {
+        const filteredList = this.filterData();
+
         return (
             <Grid>
                 <Grid.Column width={4}>
                     {this.renderSelectionOptions()}
                 </Grid.Column>
                 <Grid.Column width={8}>
-                    {this.renderTable()}
+                    {this.renderTable(filteredList)}
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    {this.renderStatistics()}
+                    {this.renderStatistics(filteredList)}
                 </Grid.Column>
             </Grid>
         )

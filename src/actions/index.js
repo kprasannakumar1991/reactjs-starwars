@@ -94,7 +94,7 @@ export const getData = () => async dispatch => {
     dispatch({
         type: TYPES.PLANETS,
         payload: {
-            count: people.data.count,
+            count: planets.data.count,
             results:planets.data.results}
     })
     dispatch({

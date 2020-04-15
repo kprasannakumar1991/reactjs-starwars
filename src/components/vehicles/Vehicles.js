@@ -30,15 +30,11 @@ class Vehicles extends React.Component {
             searchString: '',
             sortValue: null
         }
-
-        this.selectedList = [];
     }
 
 
     onSearchTextChange  = (text) => {
-
         this.setState({searchString: text.toLowerCase()})
-
     }
 
     onSortDataSelected = (title, value) => {
@@ -50,7 +46,6 @@ class Vehicles extends React.Component {
     }
 
     filterData = () => {
-
         var list = this.props.vehicles;
 
         if (this.state.searchString) {
@@ -91,29 +86,30 @@ class Vehicles extends React.Component {
         )
     }
 
-    renderTable = () => {
-        this.selectedList = this.filterData();
+    renderTable = (list) => {
         return (
-            <VehiclesTable list={this.selectedList}/>
+            <VehiclesTable list={list}/>
         )
     }
     
-    renderStatistics = () => {
+    renderStatistics = (list) => {
         return (
-            <VehicleStatistics list={this.selectedList} />
+            <VehicleStatistics list={list} />
         )
     }
     render() {
+        const filteredList = this.filterData();
+
         return (
             <Grid>
                 <Grid.Column width={4}>
                     {this.renderSelectionOptions()}
                 </Grid.Column>
                 <Grid.Column width={8}>
-                    {this.renderTable()}
+                    {this.renderTable(filteredList)}
                 </Grid.Column>
                 <Grid.Column width={4}>
-                {this.renderStatistics()}
+                {this.renderStatistics(filteredList)}
                 </Grid.Column>
             </Grid>
         )

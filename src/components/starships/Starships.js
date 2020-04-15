@@ -30,15 +30,11 @@ class Starships extends React.Component {
             searchString: '',
             sortValue: null
         }
-
-        this.selectedList = [];
     }
 
 
     onSearchTextChange  = (text) => {
-
         this.setState({searchString: text.toLowerCase()})
-
     }
 
     onSortDataSelected = (title, value) => {
@@ -50,7 +46,6 @@ class Starships extends React.Component {
     }
 
     filterData = () => {
-
         var list = this.props.starships;
 
         if (this.state.searchString) {
@@ -92,31 +87,30 @@ class Starships extends React.Component {
         )
     }
 
-    renderTable = () => {
-        this.selectedList = this.filterData();
+    renderTable = (list) => {
         return (
-            <StarshipsTable list={this.selectedList}/>
+            <StarshipsTable list={list}/>
         )
     }
     
-    renderStatistics = () => {
+    renderStatistics = (list) => {
         return (
-            <Container>
-                <StarshipsStatistics list={this.selectedList} />
-            </Container>
+            <StarshipsStatistics list={list} />
         )
     }
     render() {
+        const filteredList = this.filterData();
+
         return (
             <Grid>
                 <Grid.Column width={4}>
                     {this.renderSelectionOptions()}
                 </Grid.Column>
                 <Grid.Column width={8}>
-                    {this.renderTable()}
+                    {this.renderTable(filteredList)}
                 </Grid.Column>
                 <Grid.Column width={4}>
-                {this.renderStatistics()}
+                {this.renderStatistics(filteredList)}
                 </Grid.Column>
             </Grid>
         )

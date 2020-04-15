@@ -30,8 +30,6 @@ class Planets extends React.Component {
             searchString: '',
             sortValue: null
         }
-
-        this.selectedPlanets = [];
     }
 
 
@@ -80,31 +78,30 @@ class Planets extends React.Component {
         )
     }
 
-    renderTable = () => {
-        this.selectedPlanets = this.filterData();
+    renderTable = (list) => {
         return (
-            <PlanetTable list={this.selectedPlanets} />
+            <PlanetTable list={list} />
         )
     }
     
-    renderStatistics = () => {
+    renderStatistics = (list) => {
         return (
-            <Container>
-                <PlanetStats list={this.selectedPlanets}/>
-            </Container>
+            <PlanetStats list={list}/>
         )
     }
     render() {
+        const filteredList = this.filterData();
+
         return (
             <Grid>
                 <Grid.Column width={4}>
                     {this.renderSelectionOptions()}
                 </Grid.Column>
                 <Grid.Column width={8}>
-                    {this.renderTable()}
+                    {this.renderTable(filteredList)}
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    {this.renderStatistics()}
+                    {this.renderStatistics(filteredList)}
                 </Grid.Column>
             </Grid>
         )
