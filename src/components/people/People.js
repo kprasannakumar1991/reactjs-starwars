@@ -73,19 +73,24 @@ class People extends React.Component {
     filterData = () => {
         let list = this.props.people;
 
+        // filter based on search string
         if (this.state.searchString) {
-            list = _.filter(this.props.people, (p) => {
-                // filter based on search string
+            list = list.filter((p) => {
                 const nameMatched =  p.name.toLowerCase().includes(this.state.searchString);
     
-                // filter based on Gender selection
+                return nameMatched;
+    
+            });
+        }
+
+        // filter based on Gender selection
+        if (this.state.genders.length > 0) {
+            list = list.filter((p) => {
+    
                 let genderMatched = true;
-                if (this.state.genders.length > 0) {
-                    genderMatched = this.state.genders.some(e => ((e.value === p.gender) && e.active));
+                genderMatched = this.state.genders.some(e => ((e.value === p.gender) && e.active));
     
-                }
-    
-                return nameMatched && genderMatched;
+                return genderMatched;
     
             });
         }
